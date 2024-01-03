@@ -1,0 +1,247 @@
+*{
+	box-sizing: border-box;
+}
+body{
+    margin: 0px;
+}
+.main{
+    width: 80%;
+    margin: auto;
+    
+	
+
+}
+.topBox{
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+}
+.pictureBox{
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  
+}
+.picture{
+  width: 100%;
+  height: 100%;
+  position: relative;
+	 
+}
+.guitarImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ 
+}
+
+.left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leftButton{
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+	 
+}
+.fa-sharp fa-solid fa-chevron-left{
+	 width: 100px;
+     height: 100px;
+}
+body.darkmode .fa-sharp fa-solid fa-chevron-left{
+	color:var(--text-dark-color);
+}
+.right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rightButton{
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+	 
+}
+.nickName{
+	
+	margin-top:50px;
+	
+}
+
+.fa-sharp fa-solid fa-chevron-right{
+	 width: 100px;
+     height: 100px;
+}
+.dealTitileBox{
+	display: flex;
+	margin-top: 10px;
+}
+.SaleOrSoldout{
+	color: var( --accent-color);
+    font-size : 20px;
+    font-weight: bold;
+    
+}
+.thingTitle{
+	    margin-left: 10px;
+	    font-size : 20px;
+}
+
+.price{
+	
+	font-weight: bold;
+	margin-top: 10px;
+    font-size: 25px;
+}
+.productDetailBox{
+	display: flex;
+	flex-direction: column
+}
+.productConditionDetailBox{
+	display: flex;
+}
+.productCondition{
+	margin-top: 10px;
+	color: var(  --grey-color);
+	
+}
+.ConditionResult{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.deliveryPriceDetailBox{
+	
+	display: flex;
+}
+
+.deliveryPrice{
+	margin-top: 10px;
+	color: var(  --grey-color);
+	
+}
+.PriceResult{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.tradingAreaDetailBox{
+  display: flex;
+}
+.tradingArea{
+  margin-top: 10px;
+  color: var(  --grey-color);
+	
+}
+.AreaResult{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.productInformationTitle{
+  margin-top: 20px;
+
+}
+.productInformationAnswer{
+  margin-top: 20px;
+}
+.bottomBox{
+  margin-left: 200px;
+}
+.QuestionChat{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.QuestionChatButton{
+	width: 150px;
+    height: 50px; 
+    background-color: #ccc; 
+	border-radius:10px;
+    text-align: center;
+    border:none;
+    margin-right: 200px;
+    margin-top: 80px;
+    margin-bottom: 200px;
+}
+
+
+
+/*아이폰 SE*/
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 375px) {
+  .pictureBox {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+  }
+  .picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .guitarImg {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+위의 코드는 .pictureBox 클래스에 padding-bottom 속성을 사용하여 요소의 높이를 가로 너비의 비율에 맞게 설정합니다. .picture 클래스에는 position: absolute;를 설정하여 상위 요소에 상대적으로 위치하도록 합니다. 그리고 .guitarImg 클래스에는 object-fit: cover;를 사용하여 이미지가 가로 세로 비율을 유지하면서 요소에 꽉 차도록 설정합니다.
+
+이렇게 하면 해당 미디어 쿼리에서 화면 크기에 따라 .pictureBox 요소가 비율을 유지하면서 조절될 것입니다. 필요한 곳에 코드를 적용하여 원하는 비율로 요소를 조절할 수 있습니다.
+
+
+
+
+
+
+	
+}
+
+
+/*아이폰 12 pro*/
+@media only screen and (min-device-width : 376px) and (max-device-width : 390px) {
+    
+.bottomBox {
+	margin-left: 10px;
+ 	width: 80%;
+}
+.QuestionChatButton{
+	width: 150px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 10px;
+    text-align: center;
+    border: none;
+    margin-left: 10px;
+    margin-top: 80px;
+    margin-bottom: 200px;
+    margin-right: 7px;
+}
+    
+    
+}
+/*아이폰 xr*/
+
+@media only screen and (min-device-width : 391px) and (max-device-width : 414px) {    
+    
+    
+}
+
+
+/*아이패드 에어 */
+@media only screen (min-device-width : 769px)  and (max-device-width : 820px){ 
+	
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+    <libraryInfo home="/Users/jy/.sdkman/candidates/java/11.0.12.7.2-amzn" version="11.0.12"/>
+    <libraryInfo home="/Users/jy/Documents/tools/lib/spring/jdk-11.0.2" version="11.0.2"/>
+    <libraryInfo home="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home" version="11.0.19"/>
+    <libraryInfo home="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/bin" version="11.0.19"/>
+    <libraryInfo home="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home" version="17.0.6"/>
+    <libraryInfo home="/Users/jy/Documents/tools/spring/jdk-11.0.2" version="11.0.2"/>
+</libraryInfos>

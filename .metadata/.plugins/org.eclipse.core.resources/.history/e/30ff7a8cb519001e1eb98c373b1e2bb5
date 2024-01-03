@@ -1,0 +1,25 @@
+/**
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+CKEDITOR.editorConfig = function( config ) {
+			config.toolbarGroups = [
+				{ name: 'clipboard', groups: [ 'undo', 'clipboard' ] },
+				{ name: 'styles', groups: [ 'styles' ] },
+				{ name: 'forms', groups: [ 'forms' ] },
+				{ name: 'colors', groups: [ 'colors' ] },
+				{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+				{ name: 'insert', groups: [ 'insert' ] },
+				{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+				{ name: 'links', groups: [ 'links' ] },
+				{ name: 'tools', groups: [ 'tools' ] },
+				{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+				{ name: 'document', groups: [ 'document', 'mode', 'doctools' ] },
+				{ name: 'others', groups: [ 'others' ] },
+				{ name: 'about', groups: [ 'about' ] }
+			];
+
+			config.removeButtons = 'Save,NewPage,Print,Scayt,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,CreateDiv,Language,Flash,PageBreak,Iframe,Templates,Anchor,Link,Unlink,Preview,Source,About,Find,Replace,Undo,Redo,Cut,Copy,Paste,PasteText,PasteFromWord,Superscript,Subscript,Strike,CopyFormatting,RemoveFormat,Blockquote,BidiLtr,BidiRtl,Table,HorizontalRule,Smiley,SpecialChar,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,NumberedList,BulletedList,Indent,Outdent,Format,BGColor,ShowBlocks,Maximize,Styles';
+		};
+	
