@@ -102,20 +102,20 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.bannedUserIds(boardBanned);
 	}
-//
-//	
-//	/**
-//	 * 좋아요 등록
-//	 * @author lee
-//	 * @param likeVo
-//	 * @return
-//	 */
-//	
-//	@Override
-//	public void addLike(BoardLikeVO likeVo) {
-//		dao.addLike(likeVo);
-//		
-//	}
+
+	
+	/**
+	 * 좋아요 등록
+	 * @author lee
+	 * @param likeVo
+	 * @return
+	 */
+	
+	@Override
+	public void addLike(BoardLikeVO likeVo) {
+		dao.addLike(likeVo);
+		
+	}
 
 	/**
 	 * 좋아요 한지 안한지 체크

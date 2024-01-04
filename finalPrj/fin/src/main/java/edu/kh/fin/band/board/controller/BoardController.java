@@ -3,6 +3,7 @@ package edu.kh.fin.band.board.controller;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +18,11 @@ import edu.kh.fin.band.board.model.vo.BoardLikeVO;
 import edu.kh.fin.band.board.model.vo.Criteria;
 import edu.kh.fin.band.board.model.vo.PageVO;
 import edu.kh.fin.band.login.model.vo.User;
+import edu.kh.fin.band.myBand.controller.MyBandController;
 
 import org.apache.ibatis.reflection.SystemMetaObject;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,7 +60,7 @@ public class BoardController {
 	
 	@Autowired
 	private ReplyService rService;   
-	
+	private Logger logger = LoggerFactory.getLogger(MyBandController.class);
 	
 	@GetMapping("/board")
 	public String BoardList(Model model, Criteria cri,
@@ -209,7 +212,6 @@ public class BoardController {
 					
 					BoardLikeVO likeVo = new BoardLikeVO();
 					likeVo.setBoardNo(boardNo);
-					likeVo.setUserNo(loginUserNo);
 					likeVo.setLoginUserNo(loginUserNo);
 					
 					
@@ -217,8 +219,8 @@ public class BoardController {
 					  System.out.println(loginUserNo);
 				    
 				    int result = service.checkLike(likeVo);
-					
-				    System.out.println(result);
+					model.addAttribute("LikeVo",likeVo);
+
 				    if(result > 0) {
 				    	model.addAttribute("likeck", "T");
 				    }else {
@@ -399,6 +401,33 @@ public class BoardController {
 			return "redirect:/board";
 			
 		}
+	
+	}
+	
+	
+
+	
+	@PostMapping("/addLike")
+	public String addLike(
+							BoardLikeVO likeVo,
+							@RequestParam("boardNo") int boardNo,
+							@RequestParam("userNo") int userNo,
+							@RequestParam("loginUserNo") int loginUserNo,
+							@ModelAttribute("loginUser") User loginUser
+						   ) {
+		
+		
+			    likeVo.setBoardNo(boardNo);
+				likeVo.setLoginUserNo(loginUserNo);
+				logger.info("boardNo" + boardNo);
+				logger.info("loginUserNo" + loginUserNo);
+				logger.info("userNo" + userNo);
+				 service.addLike(likeVo);
+	      
+			return "board/boardDetail";
+			
+		
+		
 	
 	}
 	

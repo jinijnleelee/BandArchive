@@ -98,22 +98,22 @@ public class BoardDAO {
 	}
 	
 	
-//	
-//	
-//	
-//	/**
-//	 * 좋아요 등록
-//	 * @author lee
-//	 * @param likeVo
-//	 * @return
-//	 */
-//	
-//	//좋아요 등록
-//	
-//	public void addLike(BoardLikeVO likeVo) {
-//		sqlSession.insert("boardMapper.addLike", likeVo);
-//	}
-//	
+	
+	
+	
+	/**
+	 * 좋아요 등록
+	 * @author lee
+	 * @param likeVo
+	 * @return
+	 */
+	
+	//좋아요 등록
+	
+	public void addLike(BoardLikeVO likeVo) {
+		sqlSession.insert("boardMapper.addLike", likeVo);
+	}
+	
 //	/**
 //	 * 좋아요 취소 
 //	 * @author lee

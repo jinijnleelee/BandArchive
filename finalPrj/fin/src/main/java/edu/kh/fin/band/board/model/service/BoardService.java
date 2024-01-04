@@ -40,14 +40,14 @@ public interface BoardService {
 
 	List<String> bannedUserIds(BoardBanned boardBanned);
 
-//	/**
-//	 * 좋아요 등록 
-//	 * @author lee
-//	 * @param likeVo
-//	 * @return
-//	 */
-//	public void addLike(BoardLikeVO likeVo);
-//
+	/**
+	 * 좋아요 등록 
+	 * @author lee
+	 * @param likeVo
+	 * @return
+	 */
+	public void addLike(BoardLikeVO likeVo);
+
 //	/**
 //	 * 좋아요 취소 
 //	 * @author lee
