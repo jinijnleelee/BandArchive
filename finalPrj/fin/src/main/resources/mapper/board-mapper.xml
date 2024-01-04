@@ -333,8 +333,8 @@ WHERE BOARD_NO = #{boardNo}
 	</insert>
 	
 	<!-- 좋아요 테이블 좋아요 삭제 -->
-	<delete id="removeLikeFromLikeTable" >
-		DELETE FROM BOARD_LIKE WHERE BOARD_NO = ${boardNo} AND USER_NO = ${loginUserNo}
+	<delete id="removeLike" >
+		DELETE FROM BOARD_LIKE WHERE BOARD_NO = #{boardNo} AND USER_NO = #{loginUserNo}
 	</delete>
 	
 	<!--좋아요 갯수-->

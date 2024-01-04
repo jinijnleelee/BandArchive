@@ -114,19 +114,19 @@ public class BoardDAO {
 		sqlSession.insert("boardMapper.addLike", likeVo);
 	}
 	
-//	/**
-//	 * 좋아요 취소 
-//	 * @author lee
-//	 * @param boardNo
-//	 * @param loginUser
-//	 * @return
-//	 */
-//	
-//	public void removeLikeFromLikeTable(BoardLikeVO likeVo) {
-//		sqlSession.delete("boardMapper.removeLikeFromLikeTable", likeVo);
-//	}
-//	
-//	
+	/**
+	 * 좋아요 취소 
+	 * @author lee
+	 * @param boardNo
+	 * @param loginUser
+	 * @return
+	 */
+	
+	public void removeLike(BoardLikeVO likeVo) {
+		sqlSession.delete("boardMapper.removeLike", likeVo);
+	}
+	
+	
 //	
 //	//좋아요 갯수
 //	public int countLike(int board_no) {

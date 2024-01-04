@@ -408,13 +408,12 @@ public class BoardController {
 
 	
 	@PostMapping("/addLike")
-	public String addLike(
-							BoardLikeVO likeVo,
-							@RequestParam("boardNo") int boardNo,
-							@RequestParam("userNo") int userNo,
-							@RequestParam("loginUserNo") int loginUserNo,
-							@ModelAttribute("loginUser") User loginUser
-						   ) {
+	public String addLike(BoardLikeVO likeVo,
+						@RequestParam("boardNo") int boardNo,
+						@RequestParam("userNo") int userNo,
+						@RequestParam("loginUserNo") int loginUserNo,
+						@ModelAttribute("loginUser") User loginUser
+						 ) {
 		
 		
 			    likeVo.setBoardNo(boardNo);
@@ -422,9 +421,10 @@ public class BoardController {
 				logger.info("boardNo" + boardNo);
 				logger.info("loginUserNo" + loginUserNo);
 				logger.info("userNo" + userNo);
+				logger.info("추가 완 ");
 				 service.addLike(likeVo);
 	      
-			return "board/boardDetail";
+					return "redirect:/boardDetail";
 			
 		
 		
@@ -432,6 +432,29 @@ public class BoardController {
 	}
 	
 	
+	@PostMapping("/removeLike")
+	public String removeLike(BoardLikeVO likeVo,
+						@RequestParam("boardNo") int boardNo,
+						@RequestParam("userNo") int userNo,
+						@RequestParam("loginUserNo") int loginUserNo,
+						@ModelAttribute("loginUser") User loginUser
+						 ) {
+		
+		
+			    likeVo.setBoardNo(boardNo);
+				likeVo.setLoginUserNo(loginUserNo);
+				logger.info("boardNo" + boardNo);
+				logger.info("loginUserNo" + loginUserNo);
+				logger.info("userNo" + userNo);
+				logger.info("삭제 완 ");
+				 service.removeLike(likeVo);
+	      
+			return "redirect:/boardDetail";
+			
+		
+		
+	
+	}
 	
 
 	

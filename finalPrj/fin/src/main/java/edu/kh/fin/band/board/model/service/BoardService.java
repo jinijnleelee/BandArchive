@@ -48,15 +48,15 @@ public interface BoardService {
 	 */
 	public void addLike(BoardLikeVO likeVo);
 
-//	/**
-//	 * 좋아요 취소 
-//	 * @author lee
-//	 * @param likeVo
-//	 * @return
-//	 */
-//	public void removeLikeFromLikeTable(BoardLikeVO likeVo);
-//
-//	
+	/**
+	 * 좋아요 취소 
+	 * @author lee
+	 * @param likeVo
+	 * @return
+	 */
+	public void removeLike(BoardLikeVO likeVo);
+
+	
 //	/**
 //	 * 좋아요 갯수 
 //	 * @author lee

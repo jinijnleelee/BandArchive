@@ -143,12 +143,12 @@ public class BoardServiceImpl implements BoardService{
 
 	
 
-//	@Override
-//	public void removeLikeFromLikeTable(BoardLikeVO likeVo) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
+	@Override
+	public void removeLike(BoardLikeVO likeVo) {
+		dao.removeLike(likeVo);
+		
+	}
+
 //	@Override
 //	public int countLike(int board_no) {
 //		// TODO Auto-generated method stub

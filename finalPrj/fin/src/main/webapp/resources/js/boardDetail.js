@@ -22,16 +22,18 @@ function addLike() {
     $.ajax({
       url: "removeLike",
       method: "POST",
-      dataType: "JSON",
+     // dataType: "JSON",
       data: { boardNo: boardNo, userNo: userNo, loginUserNo: loginUserNo },
-      success: function (result) {
-        if (result == 1) {
-          let minusResult = Number(like_Check.innerText - 1);
-          like_Check.innerText = minusResult;
+      success: function () {
+        // if (result == 1) {
+          console.log("삭제요청이 성공적으로 처리되었습니다.");
+          // let minusResult = Number(like_Check.innerText - 1);
+          // like_Check.innerText = minusResult;
+
           likeck.value = "F";
-        } else {
-          like_Check.innerText = result;
-        }
+        // } else {
+        //   like_Check.innerText = result;
+        // }
       },
       error: function (request, status, error) {
         console.log("removeLike AJAX 에러 발생");
