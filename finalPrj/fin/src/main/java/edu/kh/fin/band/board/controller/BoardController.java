@@ -53,6 +53,7 @@ import edu.kh.fin.band.login.model.vo.User;
 @Controller
 //@RequestMapping("/board")
 @SessionAttributes({"loginUser"})
+
 public class BoardController {
 	
 	@Autowired
@@ -117,6 +118,7 @@ public class BoardController {
     }
 
 	@GetMapping("/boardDetail")
+	
 	public String boardDetail(@RequestParam("boardNo")int boardNo,
 								Model model, Criteria cri,
 								@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
@@ -210,16 +212,19 @@ public class BoardController {
 					
 					 // 내가 좋아요 한지 안한지 체크 
 					
+					
 					BoardLikeVO likeVo = new BoardLikeVO();
 					likeVo.setBoardNo(boardNo);
 					likeVo.setLoginUserNo(loginUserNo);
 					
 					
-					  System.out.println(boardNo);
-					  System.out.println(loginUserNo);
+					int countLike = service.countLike(boardNo);
+					model.addAttribute("countLike",countLike);
+					
 				    
 				    int result = service.checkLike(likeVo);
 					model.addAttribute("LikeVo",likeVo);
+					
 
 				    if(result > 0) {
 				    	model.addAttribute("likeck", "T");
@@ -351,7 +356,7 @@ public class BoardController {
 		
 	
 	}
-	
+
 	@GetMapping("/update")
 	public String updateForm(@RequestParam("boardNo")int boardNo, 
 											Model model,Criteria cri,
@@ -408,7 +413,9 @@ public class BoardController {
 
 	
 	@PostMapping("/addLike")
-	public String addLike(BoardLikeVO likeVo,
+	@ResponseBody
+	public  int addLike(BoardLikeVO likeVo,
+						Model model,
 						@RequestParam("boardNo") int boardNo,
 						@RequestParam("userNo") int userNo,
 						@RequestParam("loginUserNo") int loginUserNo,
@@ -423,8 +430,17 @@ public class BoardController {
 				logger.info("userNo" + userNo);
 				logger.info("추가 완 ");
 				 service.addLike(likeVo);
+				 
+				 
+				int result = service.countLike(boardNo);
+				if (result>1) {
+					model.addAttribute("like_Check",result);
+					
+				}else {
+						model.addAttribute("like_Check",result);
+				}
+				return result;
 	      
-					return "redirect:/boardDetail";
 			
 		
 		
@@ -433,7 +449,9 @@ public class BoardController {
 	
 	
 	@PostMapping("/removeLike")
-	public String removeLike(BoardLikeVO likeVo,
+	@ResponseBody
+	public int removeLike(BoardLikeVO likeVo,
+			Model model,
 						@RequestParam("boardNo") int boardNo,
 						@RequestParam("userNo") int userNo,
 						@RequestParam("loginUserNo") int loginUserNo,
@@ -448,13 +466,24 @@ public class BoardController {
 				logger.info("userNo" + userNo);
 				logger.info("삭제 완 ");
 				 service.removeLike(likeVo);
-	      
-			return "redirect:/boardDetail";
+				 
+					int result = service.countLike(boardNo);
+					if (result>1) {
+						model.addAttribute("like_Check",result);
+						
+					}else {
+							model.addAttribute("like_Check",result);
+					}
+			return result;
 			
 		
 		
 	
 	}
+	
+	
+	
+	
 	
 
 	

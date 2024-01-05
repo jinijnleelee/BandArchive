@@ -19,21 +19,14 @@ function addLike() {
 
   if (likeck.value == "T") {
     console.log("TTTTTTT");
-    $.ajax({
+     $.ajax({
       url: "removeLike",
       method: "POST",
-     // dataType: "JSON",
       data: { boardNo: boardNo, userNo: userNo, loginUserNo: loginUserNo },
       success: function () {
-        // if (result == 1) {
           console.log("삭제요청이 성공적으로 처리되었습니다.");
-          // let minusResult = Number(like_Check.innerText - 1);
-          // like_Check.innerText = minusResult;
-
           likeck.value = "F";
-        // } else {
-        //   like_Check.innerText = result;
-        // }
+        location.reload()
       },
       error: function (request, status, error) {
         console.log("removeLike AJAX 에러 발생");
@@ -41,24 +34,22 @@ function addLike() {
       },
     });
   } // if 끝
-  else {
+    else {
     console.log("FFFFFF NOTHING");
     $.ajax({
       url: "addLike",
       method: "POST",
-     // dataType: "JSON",
+    
       data: { boardNo: boardNo, userNo: userNo, loginUserNo: loginUserNo },
       success: function () {
         console.log("요청이 성공적으로 처리되었습니다.");
+         location.reload()
       },
       
       error: function (request, status, error) {
         console.log("addLike AJAX 에러 발생");
         console.log("상태코드 : " + request.status);
-        console.log(boardNo);
-        console.log(userNo);
-        console.log(loginUserNo);
-        alert("응 실패입니당");
+
       },
     });
   } // else끝

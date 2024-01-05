@@ -112,8 +112,8 @@ public class BoardServiceImpl implements BoardService{
 	 */
 	
 	@Override
-	public void addLike(BoardLikeVO likeVo) {
-		dao.addLike(likeVo);
+	public int addLike(BoardLikeVO likeVo) {
+		return  dao.addLike(likeVo);
 		
 	}
 
@@ -144,17 +144,16 @@ public class BoardServiceImpl implements BoardService{
 	
 
 	@Override
-	public void removeLike(BoardLikeVO likeVo) {
-		dao.removeLike(likeVo);
+	public int removeLike(BoardLikeVO likeVo) {
+		return	dao.removeLike(likeVo);
 		
 	}
 
-//	@Override
-//	public int countLike(int board_no) {
-//		// TODO Auto-generated method stub
-//		return dao.getReplyCount(board_no);
-//	}
-//
+	@Override
+	public int countLike(int boardNo) {
+		return dao.countLike(boardNo);
+	}
+
 //	@Override
 //	public int getLike(int boardNo) {
 //		// TODO Auto-generated method stub

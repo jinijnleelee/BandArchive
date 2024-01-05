@@ -125,6 +125,7 @@ const deleteBtn= () => {
       <input id="userNo" type="hidden" value="${BoardDetail.userNo}" name="userNo">
       <input id="loginUserNo" type="hidden" value="${sessionScope.loginUser.userNo}" name="loginUserNo">
       <input id="likeck" type="hidden"  value="${likeck}" name="likeck">
+       <input id="countLike" type="hidden"  value="${countLike}" name="countLike">
 
       
     </div>
@@ -203,7 +204,7 @@ const deleteBtn= () => {
 		   </c:choose>
 
     </div>
-    	 <span id='like_Check' style='margin-left: 3px;'>${BoardDetail.boardLike}</span>
+    	 <span id='like_Check' style='margin-left: 3px;'>${countLike}</span>
     	 <span style='margin-left: 3px;'>like</span>
     </div>
         <button  id="listBtn" onclick="goBack()" class="report">목록</button>
@@ -221,8 +222,8 @@ function goBack() {
 }
 </script>
    
-<script src = "${contextPath}/resources/js/boardDetail.js"></script>
-    <script src="${contextPath}/resources/js/reply.js"></script>
+<script  src="${contextPath}/resources/js/boardDetail.js?v=<%=System.currentTimeMillis() %>"></script>
+    <script src="${contextPath}/resources/js/reply.js?v=<%=System.currentTimeMillis() %>"></script>
 
 </body>
 </html>

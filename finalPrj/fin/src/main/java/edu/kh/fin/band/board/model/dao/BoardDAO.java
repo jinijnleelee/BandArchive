@@ -110,8 +110,8 @@ public class BoardDAO {
 	
 	//좋아요 등록
 	
-	public void addLike(BoardLikeVO likeVo) {
-		sqlSession.insert("boardMapper.addLike", likeVo);
+	public int addLike(BoardLikeVO likeVo) {
+		return sqlSession.insert("boardMapper.addLike", likeVo);
 	}
 	
 	/**
@@ -122,17 +122,17 @@ public class BoardDAO {
 	 * @return
 	 */
 	
-	public void removeLike(BoardLikeVO likeVo) {
-		sqlSession.delete("boardMapper.removeLike", likeVo);
+	public int removeLike(BoardLikeVO likeVo) {
+		return	sqlSession.delete("boardMapper.removeLike", likeVo);
 	}
 	
 	
-//	
-//	//좋아요 갯수
-//	public int countLike(int board_no) {
-//	    return sqlSession.selectOne("boardMapper.countLike", board_no);
-//	}
-//	
+	
+	//좋아요 갯수
+	public int countLike(int boardNo) {
+	    return sqlSession.selectOne("boardMapper.countLike", boardNo);
+	}
+	
 	/**
 	 * 좋아요 한지 안한지 체크
 	 * @author lee
