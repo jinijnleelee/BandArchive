@@ -189,8 +189,8 @@ public class BoardDAO {
 //
 
 	public int loginUserBoardWriteUsercheck(BoardLikeVO likeVo) {
-		
-		return sqlSession.selectOne("boardMapper.loginUserBoardWriteUsercheck", likeVo);
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("boardMapper.oginUserBoardWriteUsercheck", likeVo);
 	}
 
 

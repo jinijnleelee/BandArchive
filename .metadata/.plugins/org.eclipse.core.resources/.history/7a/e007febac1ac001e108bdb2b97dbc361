@@ -78,7 +78,7 @@ public interface BoardService {
 	int getReplyCount(int boardNo);
 
 
-	int loginUserBoardWriteUsercheck(BoardLikeVO likeVo);
+
 
 
 

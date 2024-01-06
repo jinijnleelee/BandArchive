@@ -107,7 +107,7 @@ public class BoardDAO {
 	 * @return
 	 */
 
-
+	//좋아요 등록
 
 	public int addLike(BoardLikeVO likeVo) {
 		
@@ -187,11 +187,6 @@ public class BoardDAO {
 //	}
 //
 //
-
-	public int loginUserBoardWriteUsercheck(BoardLikeVO likeVo) {
-		
-		return sqlSession.selectOne("boardMapper.loginUserBoardWriteUsercheck", likeVo);
-	}
 
 
 

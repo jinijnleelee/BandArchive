@@ -22,7 +22,7 @@ public class Board {
 	private int boardLike;
 	private String boardTag;
 	private String userNick;
-	
+	private int like_cnt;
 
 
 

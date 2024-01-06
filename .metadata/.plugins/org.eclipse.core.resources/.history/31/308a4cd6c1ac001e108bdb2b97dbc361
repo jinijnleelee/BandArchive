@@ -149,11 +149,6 @@ public class BoardServiceImpl implements BoardService{
 		return dao.countLike(boardNo);
 	}
 
-	@Override
-	public int loginUserBoardWriteUsercheck(BoardLikeVO likeVo) {
-		return dao.loginUserBoardWriteUsercheck(likeVo);
-	}
-
 //	@Override
 //	public int getLike(int boardNo) {
 //		// TODO Auto-generated method stub

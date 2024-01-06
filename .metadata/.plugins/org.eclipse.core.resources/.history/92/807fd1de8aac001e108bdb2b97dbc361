@@ -152,7 +152,7 @@
 		 <input type="hidden" name="bannedUserNo" value="${board.userNo}">
 		    <input type="hidden" name="bannedUserNick" value="${board.userNick}">
 		    <input type="hidden" name="userNo" value="${loginUser.userNo}">
-		
+		    <input id="countLike" type="hidden"  value="${countLike}" name="countLike" >
 		</td>      	
 
 

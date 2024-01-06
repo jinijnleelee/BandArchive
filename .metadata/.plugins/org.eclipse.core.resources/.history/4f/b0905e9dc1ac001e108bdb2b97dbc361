@@ -327,9 +327,6 @@ WHERE BOARD_NO = #{boardNo}
 	<update id="boardLikeMinus"  parameterType="board">
 		UPDATE BOARD SET BOARD_LIKE = BOARD_LIKE - 1  WHERE BOARD_NO = #{boardNo}
 	</update>
-	<!-- 로그인 유저가 글쓴유저인지 체크 -->
-	<select id="loginUserBoardWriteUsercheck" resultType="_int">
-	SELECT COUNT(*) FROM BOARD_LIKE BL JOIN BOARD  USING(USER_NO,BOARD_NO) WHERE USER_NO = #{loginUserNo} AND BOARD_NO = #{boardNo}
-	</select>
+
 	
 </mapper>

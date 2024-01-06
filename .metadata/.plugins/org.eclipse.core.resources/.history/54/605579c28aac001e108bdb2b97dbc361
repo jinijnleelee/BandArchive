@@ -76,7 +76,10 @@ public class BoardController {
 
 	    model.addAttribute("boardList", boardList);
 	    model.addAttribute("pageVO", pageVO);
-
+		int countLike = service.countLike(board.getBoardNo());
+		System.out.println(board.getBoardNo());
+		System.out.println(board.getLike_cnt());
+		model.addAttribute("countLike",countLike);
 	    return "board/boardMain";
 	}
 
@@ -417,21 +420,11 @@ public class BoardController {
 				logger.info("loginUserNo" + loginUserNo);
 				logger.info("userNo" + userNo);
 				logger.info("추가 완 ");
-				
+				service.addLike(likeVo);
 
-				int WriteUserResult= service.loginUserBoardWriteUsercheck(likeVo);
-				
-				if(WriteUserResult > 0 ) {
-					model.addAttribute("WriteUserResult",WriteUserResult);
-				}else {
-					service.addLike(likeVo);
-					
-				}
-				
-				
+
 				int result = service.countLike(boardNo);
-				
-				if (result>0) {
+				if (result>1) {
 					model.addAttribute("like_Check",result);
 
 				}else {

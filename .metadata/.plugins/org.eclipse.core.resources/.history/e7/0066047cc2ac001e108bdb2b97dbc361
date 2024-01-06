@@ -417,14 +417,13 @@ public class BoardController {
 				logger.info("loginUserNo" + loginUserNo);
 				logger.info("userNo" + userNo);
 				logger.info("추가 완 ");
-				
+				service.addLike(likeVo);
 
-				int WriteUserResult= service.loginUserBoardWriteUsercheck(likeVo);
-				
-				if(WriteUserResult > 0 ) {
-					model.addAttribute("WriteUserResult",WriteUserResult);
+				int loginUserBoardWriteUsercheck = service.loginUserBoardWriteUsercheck(likeVo);
+				if(loginUserBoardWriteUsercheck > 0 ) {
+					
 				}else {
-					service.addLike(likeVo);
+					
 					
 				}
 				
