@@ -11,8 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Reply {
 
-	
-	
+
+
 	private int replyNo;
 	private int boardNo;
 	private String replyContent;
@@ -21,10 +21,10 @@ public class Reply {
 	private int userNo;
 	private int parentReplyNo;
 	private String userNick;
-	
+
 	// 알람 용
 	private int toUserNo;
-	
+
 //	`REPLY_NO`	NUMBER	NOT NULL,
 //	`BOARD_NO`	NUMBER	NOT NULL,
 //	`REPLY_CONTENT`	VARCHAR2(2000)	NOT NULL,
@@ -33,6 +33,6 @@ public class Reply {
 //	`USER_NO`	NUMBER	NOT NULL,
 //	`PARENT_REPLY_NO`	NUMBER	NULL
 //	USER_NICK
-	
-	
+
+
 }

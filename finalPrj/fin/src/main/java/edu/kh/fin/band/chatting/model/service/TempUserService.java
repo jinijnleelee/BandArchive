@@ -8,7 +8,7 @@ import edu.kh.fin.band.chatting.model.vo.TempUserVo;
 
 @Service
 public class TempUserService {
-	
+
 	@Autowired
 	TempUserDAO dao;
 

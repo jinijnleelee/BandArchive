@@ -20,10 +20,10 @@ import edu.kh.fin.band.signupband.model.service.SignUpBandService;
 @Controller
 @SessionAttributes({"loginUser"})
 public class SignupBandController {
-	
+
 	@Autowired
 	private SignUpBandService service;
-	
+
 	/**
 	 * 밴드 가입 승락 컨트롤러
 	 * @author lee
@@ -34,16 +34,16 @@ public class SignupBandController {
 	@PostMapping("/acceptBand")
 	public String acceptBand(@RequestParam("bandNo") int bandNo,
 			@ModelAttribute("loginUser") User loginUser, RedirectAttributes ra) {
-		
+
 		int result = 0;
 
 		Invitation invi = new Invitation();
-		
+
 		invi.setBandNo(bandNo);
 		invi.setFromUserNo(loginUser.getUserNo());
-		
+
 		result = service.acceptBand(invi);
-		
+
 		if(result > 0) {
 			ra.addFlashAttribute("msgFromAccept", "밴드가입이 완료 되었습니다!");
 			return "redirect:main";
@@ -52,7 +52,7 @@ public class SignupBandController {
 			return "redirect:alarmPage";
 		}
 	}
-	
+
 	/**
 	 * 초대장 거절 컨트롤러 FL 변경해야함
 	 * @author lee
@@ -62,9 +62,9 @@ public class SignupBandController {
 	 */
 	@PostMapping("/deniedBand")
 	public String deniedBand(@RequestParam("bandNo") int bandNo, RedirectAttributes ra) {
-		
+
 		int result = service.deniedBand(bandNo);
-		
+
 		if(result > 0) {
 			ra.addFlashAttribute("msgFromDenied", "밴드가입을 거절했습니다!");
 			return "redirect:main";
@@ -73,18 +73,18 @@ public class SignupBandController {
 			return "redirect:alarmPage";
 		}
 	}
-	
-	
+
+
 	@GetMapping("/modalBandInfo")
 	@ResponseBody
 	public String modalBandInfo(@RequestParam("bandNoKey") int bandNo) {
-		
+
 		Band band = new Band();
-		
+
 		band = service.modalBandInfo(bandNo);
-		
-		
-		
+
+
+
 		if(band != null) {
 			return new Gson().toJson(band);
 		}else {

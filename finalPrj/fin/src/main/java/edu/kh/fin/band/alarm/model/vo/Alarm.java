@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Alarm {
-	
+
 	private int alarmNo;
 	private int userNo;
 	private int alarmType;

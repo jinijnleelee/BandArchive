@@ -2,7 +2,6 @@ package edu.kh.fin.band.board.model.vo;
 
 import java.util.List;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,18 +15,18 @@ public class BoardDetail {
 	private String boardTitle;
 	private String boardContent;
 	private String createDate;
-	private int replyCount; //댓글갯수 
+	private int replyCount; //댓글갯수
 	private int readCount;
 	private int userNo;
 	private int boardLike;
 	private String boardTag;
 	private String userNick;
-	
+
 	private int loginUserNo;
-	
-	
+
+
 	private List<BoardImage> imageList;
 	
-	
-	
+
+
 }

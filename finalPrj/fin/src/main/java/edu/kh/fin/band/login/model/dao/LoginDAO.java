@@ -10,23 +10,23 @@ import edu.kh.fin.band.login.model.vo.User;
 
 @Repository
 public class LoginDAO {
-	
-	@Autowired 
+
+	@Autowired
 	private SqlSessionTemplate sqlSession;
 	private Logger logger = LoggerFactory.getLogger(LoginDAO.class);
-	
-	
+
+
 
 	/**로그인DAO
 	 * @param inputUser
 	 * @return loginUser
 	 */
 	public User login(User inputUser) {
-				
-		
-		User loginUser = sqlSession.selectOne("loginMapper.login", inputUser ); 
-			
-		
+
+
+		User loginUser = sqlSession.selectOne("loginMapper.login", inputUser );
+
+
 		return loginUser;
 	}
 
@@ -47,7 +47,7 @@ public class LoginDAO {
 	 * @return result
 	 */
 	public int nicknameDupCheck(String userNickname) {
-		
+
 		return sqlSession.selectOne("loginMapper.nicknameDupCheck", userNickname);
 	}
 
@@ -58,7 +58,7 @@ public class LoginDAO {
 	 * @return result
 	 */
 	public int signUp(User inputUser) {
-		
+
 		return sqlSession.insert("loginMapper.signUp", inputUser);
 	}
 

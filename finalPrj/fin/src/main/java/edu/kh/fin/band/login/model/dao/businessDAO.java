@@ -8,21 +8,21 @@ import edu.kh.fin.band.login.model.vo.Business;
 
 @Repository
 public class businessDAO {
-	
-	@Autowired 
+
+	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	// 로그인 DAO
 	public Business login(Business inputOwner) {
-		
-		Business loginOwner = sqlSession.selectOne("businessMapper.businessLogin", inputOwner ); 
-		
+
+		Business loginOwner = sqlSession.selectOne("businessMapper.businessLogin", inputOwner );
+
 		return loginOwner;
 	}
 
 	//  이메일 체크
 	public int emailDupCheck(String ownerEmail) {
-		
+
 		return sqlSession.selectOne("businessMapper.emailDupCheck", ownerEmail);
 	}
 

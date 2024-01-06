@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class SignUpController {
-	
+
 	@GetMapping("/signUp")
 	public String roomController() {
-		
+
 		return "user/signUp";
-		
+
 	}
 
 }

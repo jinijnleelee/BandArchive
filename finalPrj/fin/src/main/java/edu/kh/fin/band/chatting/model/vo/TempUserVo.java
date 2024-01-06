@@ -26,7 +26,7 @@ public class TempUserVo {
 	private String region;
 	private String gender;
 	private String yoe;
-	
+
 	@Override
 	public String toString() {
 		return "TempUserVo [userNo=" + userNo + ", userEmail=" + userEmail + ", userPwd=" + userPwd + ", userDate="
@@ -34,6 +34,6 @@ public class TempUserVo {
 				+ ", userType=" + userType + ", introMent=" + introMent + ", bannedFl=" + bannedFl + ", inst=" + inst
 				+ ", genreFavor=" + genreFavor + ", region=" + region + ", gender=" + gender + ", yoe=" + yoe + "]";
 	}
-	
+
 
 }

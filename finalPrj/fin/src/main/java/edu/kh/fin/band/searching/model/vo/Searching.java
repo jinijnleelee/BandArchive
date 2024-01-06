@@ -10,8 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Searching {
-	
-	
+
+
 	private int userNo;
 	private String userImage;
 	private int matchingNo;
@@ -21,13 +21,13 @@ public class Searching {
 	private String genre;
 	private char gender;
 	private String region;
-	
-	
+
+
 	@Override
 	public String toString() {
 		return "Searching [userNo=" + userNo + ", matchingNo=" + matchingNo + ", career=" + career + ", userName="
 				+ userName + ", inst=" + inst + ", genre=" + genre + ", gender=" + gender + ", region=" + region + "]";
 	}
-	
-	
+
+
 }

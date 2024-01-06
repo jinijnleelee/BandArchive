@@ -8,17 +8,17 @@ import edu.kh.fin.band.login.model.vo.User;
 
 @Repository
 public class findPwDAO {
-	
-	@Autowired 
+
+	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	public int emailCheck(String userEmail) {
-		
+
 		return sqlSession.selectOne("findPwMapper.emailCheck", userEmail);
 	}
 
 	public int findPw(User inputUser) {
-		
+
 		return sqlSession.update("findPwMapper.updatePw", inputUser);
 	}
 

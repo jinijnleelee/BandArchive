@@ -12,37 +12,37 @@ import edu.kh.fin.band.login.model.vo.User;
 @Repository
 public class ReplyDAO {
 
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	/** 댓글 목록 조회 서비스 DAO
 	 * @param boardNo
 	 * @return rList
 	 */
 	public List<Reply> selectReplyList(int boardNo) {
-		
+
 		return sqlSession.selectList("replyMapper.selectReplyList", boardNo);
 	}
 
 	/** 댓글 등록 DAO
 	 * @param reply
-	 * @param loginUser 
+	 * @param loginUser
 	 * @return result
 	 */
 	public int insertReply(Reply reply, User loginUser) {
-		
+
 		int insertReply = sqlSession.insert("replyMapper.insertReply", reply);
-		
-		
+
+
 		 if(insertReply > 0) {
-		     
+
 		        return insertReply;
 		    } else {
 		        return -1;
 		    }
 		}
-	
+
 
 	/** 댓글 삭제 DAO
 	 * @param replyNo
@@ -52,7 +52,7 @@ public class ReplyDAO {
 		return sqlSession.update("replyMapper.deleteReply", replyNo);
 	}
 
-	
+
 	/** 댓글 수정 DAO
 	 * @param reply
 	 * @return result
@@ -60,5 +60,5 @@ public class ReplyDAO {
 	public int updateReply(Reply reply) {
 		return sqlSession.update("replyMapper.updateReply", reply);
 	}
-		
+
 }

@@ -10,21 +10,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MsgAlarm {
-	
+
 	private int alarmNo;
 	private int userNo;
 	private int msgNo;
 	private char alarmReadStatus;
 	private char alarmStatus;
-	
-	
+
+
 	private String userNick;
 	private String sendDay;
 	private String sendMon;
 	private int replyNo;
 	private int boardNo;
 	private int likeNo;
-	
+
 	private String roomName;
 	private String alarmMon;
 	private String alarmDay;

@@ -9,7 +9,6 @@ import edu.kh.fin.band.board.model.vo.Reply;
 import edu.kh.fin.band.login.model.vo.User;
 import edu.kh.fin.band.myPage.model.vo.Ban;
 import edu.kh.fin.band.myPage.model.vo.Band;
-import edu.kh.fin.band.myPage.model.vo.Crite;
 
 public interface MyPageService {
 
@@ -21,9 +20,9 @@ public interface MyPageService {
 
 	/** 이미지 수정 서비스
 	 * @param paramMap
-	 * @param loginUser 
+	 * @param loginUser
 	 * @return
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	int updateImg(Map<String, Object> paramMap, User loginUser) throws IOException;
 
@@ -59,7 +58,7 @@ public interface MyPageService {
 	int ban(User loginUser);
 
 	/** 밴 유저 확인
-	 * @param userNo 
+	 * @param userNo
 	 * @return
 	 */
 	List<Ban> chBanList(int userNo);
@@ -111,7 +110,7 @@ public interface MyPageService {
 	int getTotal();
 
 	/** 게시글 목록 조회
-	 * @param i 
+	 * @param i
 	 * @return
 	 */
 	List<BoardDetail> boardList(Map<String, Object> map);
@@ -142,7 +141,7 @@ public interface MyPageService {
 	 * @return
 	 */
 	int getbandNo(int userNo);
-	
+
 
 	/** 밴드 멤버 정보만 가져오기
 	 * @param bandNo

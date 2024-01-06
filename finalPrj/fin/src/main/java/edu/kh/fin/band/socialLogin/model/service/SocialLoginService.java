@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.kh.fin.band.login.model.vo.User;
-import edu.kh.fin.band.socialLogin.model.vo.SocialInfo;
 
 public interface SocialLoginService {
 

@@ -26,20 +26,4 @@
     <!--
     <Manager pathname="" />
     -->
-    
-            <Resource
-
-name="jdbc/oracle"
-
-auth="Container"
-
-type="javax.sql.DataSource"
-
-driverClassName="oracle.jdbc.driver.OracleDriver"
-
-username="fin"
-
-password="1234"
-
-url="jdbc:oracle:thin:@localhost:1521:XE"/>
 </Context>

@@ -5,17 +5,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.apache.commons.lang3.StringUtils;
-import java.util.UUID;
+
 import com.google.gson.JsonObject;
 
 @Controller
@@ -24,7 +25,7 @@ public class CkeditorFileUploadController {
 	@ResponseBody
 	public String fileUpload(HttpServletRequest request, HttpServletResponse response,
 			MultipartHttpServletRequest multiFile) throws IOException {
-	
+
 		//Json 객체 생성
 		JsonObject json = new JsonObject();
 		// Json 객체를 출력하기 위해 PrintWriter 생성
@@ -45,7 +46,7 @@ public class CkeditorFileUploadController {
 						byte[] bytes;
 						//파일을 바이트 타입으로 변경
 						bytes = file.getBytes();
-						//파일이 실제로 저장되는 경로 
+						//파일이 실제로 저장되는 경로
 						String uploadPath = request.getServletContext().getRealPath("/resources/ckimage/");
 						//저장되는 파일에 경로 설정
 						File uploadFile = new File(uploadPath);
@@ -58,14 +59,14 @@ public class CkeditorFileUploadController {
 						uploadPath = uploadPath + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
 						out.write(bytes);
-						
+
 						//클라이언트에 이벤트 추가
 						printWriter = response.getWriter();
 						response.setContentType("text/html");
-						
+
 						//파일이 연결되는 Url 주소 설정
 						String fileUrl = request.getContextPath() + "/resources/ckimage/" + fileName;
-						
+
 						//생성된 jason 객체를 이용해 파일 업로드 + 이름 + 주소를 CkEditor에 전송
 						json.addProperty("uploaded", 1);
 						json.addProperty("fileName", fileName);

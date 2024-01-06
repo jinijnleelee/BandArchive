@@ -12,23 +12,22 @@ import edu.kh.fin.band.board.model.vo.Reply;
 import edu.kh.fin.band.login.model.vo.User;
 import edu.kh.fin.band.myPage.model.vo.Ban;
 import edu.kh.fin.band.myPage.model.vo.Band;
-import edu.kh.fin.band.myPage.model.vo.Crite;
 
 @Repository
 public class MyPageDAO {
-	
-	@Autowired 
+
+	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 
 	/** 비밀번호 암호화 조회 DAO
 	 * @param i
 	 * @return
 	 */
 	public String selectEncPw(int userNo) {
-		
+
 		System.out.println("비밀번호 조회 DAO 유저NO" + userNo);
-		
+
 		return sqlSession.selectOne("myPageMapper.selectEncPw", userNo);
 	}
 
@@ -37,7 +36,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int updateInfo(Map<String, Object> paramMap) {
-		
+
 		return sqlSession.update("myPageMapper.updateInfo", paramMap);
 	}
 
@@ -46,7 +45,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int changePw(Map<String, Object> paramMap) {
-		
+
 		return sqlSession.update("myPageMapper.changePw", paramMap);
 	}
 
@@ -55,8 +54,8 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int updatePosition(Map<String, Object> paramMap) {
-		
-		
+
+
 		return sqlSession.update("myPageMapper.updatePosition", paramMap);
 	}
 
@@ -65,7 +64,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int updateImg(Map<String, Object> paramMap) {
-		
+
 		return sqlSession.update("myPageMapper.updateImg", paramMap);
 	}
 
@@ -74,7 +73,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int insertPosition(Map<String, Object> paramMap) {
-		
+
 		return sqlSession.update("myPageMapper.insertPosition", paramMap);
 	}
 
@@ -83,7 +82,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int secession(int userNo) {
-		
+
 		return sqlSession.update("myPageMapper.secession", userNo);
 	}
 
@@ -94,14 +93,14 @@ public class MyPageDAO {
 	public int ban(User loginUser) {
 
 		return 0;
-	} 
+	}
 
 	/** 차단 유저 정보 갖고오기
 	 * @return
 	 */
 	public List<Ban> chBanList(int userNo) {
-		
-	
+
+
 		return sqlSession.selectList("myPageMapper.chBanList", userNo);
 	}
 
@@ -110,7 +109,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int updateBan(int bannedUserNo) {
-		
+
 		return sqlSession.update("myPageMapper.updateBan", bannedUserNo );
 	}
 
@@ -121,7 +120,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int makeBand(Map<String, Object> paramMap) {
-		
+
 		return sqlSession.update("myPageMapper.makeBand", paramMap);
 	}
 
@@ -130,7 +129,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public List<Band> bandMem(int userNo) {
-	
+
 		return sqlSession.selectList("myPageMapper.bandMem", userNo);
 	}
 
@@ -139,8 +138,8 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int makeBandUser(Map<String, Object> paramMap) {
-		
-		
+
+
 		return sqlSession.update("myPageMapper.makeBandUser", paramMap);
 	}
 
@@ -149,7 +148,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int bandNo(int userNo) {
-		
+
 		return sqlSession.selectOne("myPageMapper.bandNo", userNo);
 	}
 
@@ -158,7 +157,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int exile(int exileNo) {
-	
+
 		return sqlSession.update("myPageMapper.exile", exileNo);
 	}
 
@@ -167,11 +166,11 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int dismiss(int bandNo) {
-		
+
 		return sqlSession.update("myPageMapper.dismiss", bandNo);
 	}
 
-	/** 
+	/**
 	 * @return
 	 */
 	public int getTotal() {
@@ -184,7 +183,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public List<BoardDetail> boardList(Map<String, Object> map) {
-		
+
 		return sqlSession.selectList("myPageMapper.boardList", map);
 	}
 
@@ -193,7 +192,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public List<Reply> ReplyList(int userNo) {
-		
+
 		return sqlSession.selectList("myPageMapper.replyList", userNo);
 	}
 
@@ -202,26 +201,26 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public int dismiss2(int bandNo) {
-		
+
 		return sqlSession.update("myPageMapper.dismiss2", bandNo);
 	}
 
-	
+
 	/** 밴드 유무 체크
 	 * @param paramMap
 	 * @return
 	 */
 	public int checkBand(Map<String, Object> paramMap) {
-		
+
 		return sqlSession.selectOne("myPageMapper.checkBand", paramMap);
 	}
-	
+
 	/** 밴드 정보
 	 * @param paramMap
 	 * @return
 	 */
 	public int bandInfo(Map<String, Object> paramMap) {
-	
+
 		return sqlSession.update("myPageMapper.bandInfo", paramMap);
 	}
 
@@ -230,7 +229,7 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public String getBandNo(int userNo) {
-		
+
 		return sqlSession.selectOne("myPageMapper.getBandNo", userNo);
 	}
 
@@ -239,18 +238,18 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public List<Band> BandUserList(int bandNo) {
-		
+
 		return sqlSession.selectList("myPageMapper.BandUserList", bandNo);
 	}
- 
-	
+
+
 	/** 세션에 새로 저장
 	 * @param paramMap
 	 * @return
 	 */
 	public User NewloginUser(Map<String, Object> paramMap) {
-		
+
 		return sqlSession.selectOne("myPageMapper.newloginUser", paramMap);
 	}
-	
+
 }

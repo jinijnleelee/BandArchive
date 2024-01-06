@@ -10,9 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Room {
-	
-	
-	
+
+
+
 	private int pracRoomNo;
 	private int pricePerHour;
 	private String roomImg;
@@ -23,8 +23,8 @@ public class Room {
 	private String introMent;
 	private String facilMent;
 	private String warnningMent;
-	
-	
-	
-		
+
+
+
+
 }

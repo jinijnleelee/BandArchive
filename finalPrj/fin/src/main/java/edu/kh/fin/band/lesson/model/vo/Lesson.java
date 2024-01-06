@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Lesson {
-	
+
 	private int lessonNo;
 	private int userNo;
 	private String userNick;
@@ -21,7 +21,7 @@ public class Lesson {
 	private String motto;
 	private String detailment;
 	private String writingDate;
-	
+
 	private String imgSrc;
 	private int imgLevel;
 }

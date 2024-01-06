@@ -17,14 +17,13 @@ import edu.kh.fin.band.login.model.vo.User;
 import edu.kh.fin.band.myPage.model.dao.MyPageDAO;
 import edu.kh.fin.band.myPage.model.vo.Ban;
 import edu.kh.fin.band.myPage.model.vo.Band;
-import edu.kh.fin.band.myPage.model.vo.Crite;
 
 @Service
 public class MyPageServiceimpl implements MyPageService{
-	
-	@Autowired 
+
+	@Autowired
 	private MyPageDAO dao;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 
@@ -34,8 +33,8 @@ public class MyPageServiceimpl implements MyPageService{
 	@Override
 	public int updateInfo(Map<String, Object> paramMap){
 		return dao.updateInfo(paramMap);
-		
-		
+
+
 	}
 
 	/** 프로필 이미지 업데이트
@@ -43,30 +42,30 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int updateImg(Map<String, Object> paramMap, User loginUser) throws IOException {
-		
+
 		MultipartFile uploadImage = (MultipartFile)paramMap.get("uploadImage");
-		
-		
+
+
 		String renameImage = null;
-		
+
 			// 이미지가 변경된 경우
-			
+
 			// 파일명 변경
 			// uploadImage.getOriginalFilename() : 원본 파일명
 			renameImage = Util.fileRename( uploadImage.getOriginalFilename() );
-			
+
 			paramMap.put("profileImg", paramMap.get("webPath") + renameImage);
-			
-			
-		
-			
+
+
+
+
 				   int img = dao.updateImg(paramMap);
-		
+
 					if( img > 0 && paramMap.get("profileImg") != null) {
 						uploadImage.transferTo( new File( paramMap.get("folderPath") + renameImage) );
-				
+
 			}
-			
+
 			return img;
 	}
 
@@ -75,7 +74,7 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int updatePosition(Map<String, Object> paramMap) {
-		
+
 		return dao.updatePosition(paramMap);
 	}
 
@@ -84,18 +83,18 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int changePw(Map<String, Object> paramMap) {
-		
+
 		String encPw = dao.selectEncPw((int)paramMap.get("userNo"));
-		
+
 			if( bcrypt.matches( (String)paramMap.get("userPw") , encPw) ) {
-			
+
 			paramMap.put("newPw", bcrypt.encode( (String)paramMap.get("newPw")) );
-			
-			
+
+
 			return dao.changePw(paramMap);
-			
+
 		}
-		
+
 		return 0;
 	}
 
@@ -104,7 +103,7 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int insertPosition(Map<String, Object> paramMap) {
-		
+
 		return dao.insertPosition(paramMap);
 	}
 
@@ -113,14 +112,14 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int secession(User loginUser) {
-		
+
 		String encPw = dao.selectEncPw(loginUser.getUserNo());
-		
+
 		if(bcrypt.matches(loginUser.getUserPw(), encPw)) {
-			
+
 			return dao.secession(loginUser.getUserNo());
 		}
-		
+
 		return 0;
 	}
 
@@ -129,7 +128,7 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int ban(User loginUser) {
-		
+
 		return dao.ban(loginUser);
 	}
 
@@ -138,9 +137,9 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public List<Ban> chBanList(int userNo) {
-		
+
 		return dao.chBanList(userNo);
-	
+
 	}
 
 	/** 밴 해제
@@ -148,8 +147,8 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int updateBan(int bannedUserNo) {
-		
-		
+
+
 		return dao.updateBan(bannedUserNo);
 	}
 
@@ -167,7 +166,7 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public List<Band> bandMem(int userNo) {
-	
+
 		return dao.bandMem(userNo);
 	}
 
@@ -176,7 +175,7 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int makeBandUser(Map<String, Object> paramMap) {
-		
+
 		return dao.makeBandUser(paramMap);
 	}
 
@@ -185,7 +184,7 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int bandNo(int userNo) {
-		
+
 		return dao.bandNo(userNo);
 	}
 
@@ -194,7 +193,7 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int exile(int exileNo) {
-		
+
 		return dao.exile(exileNo);
 	}
 
@@ -203,82 +202,82 @@ public class MyPageServiceimpl implements MyPageService{
 	 */
 	@Override
 	public int dismiss(int bandNo) {
-		
+
 		return dao.dismiss(bandNo);
 	}
 
 	@Override
 	public int getTotal() {
-		
+
 		return dao.getTotal();
 	}
 
 	@Override
 	public List<BoardDetail> boardList(Map<String, Object> map) {
-		
+
 		return dao.boardList(map);
 	}
 
 	@Override
 	public List<Reply> ReplyList(int userNo) {
-		
+
 		return dao.ReplyList(userNo);
 	}
 
 	@Override
 	public int dissmiss2(int bandNo) {
-		
+
 		return dao.dismiss2(bandNo);
 	}
 
 	@Override
-	public int checkBand(Map<String, Object> paramMap) {	
-		
+	public int checkBand(Map<String, Object> paramMap) {
+
 		int checkIn = dao.checkBand(paramMap);
-		
+
 		if(checkIn > 0) {
-			
+
 			return dao.bandInfo(paramMap);
 		} else {
-			
+
 			return 0;
 		}
 	}
 
 	@Override
 	public List<Band> BandUserList(int bandNo) {
-		
+
 		return dao.BandUserList(bandNo);
 	}
 
 	@Override
 	public int getbandNo(int userNo) {
-		
+
 		String bandNo = dao.getBandNo(userNo);
-			
-		
+
+
 		if(bandNo != null) {
-			
+
 			return Integer.parseInt(bandNo);
-			
+
 		} else {
-			
-			
-			
+
+
+
 			return 0;
 		}
-		
-			
-		
+
+
+
 	}
 
 	@Override
 	public User NewloginUser(Map<String, Object> paramMap) {
-		
+
 		return dao.NewloginUser(paramMap);
 	}
-	
 
-	
+
+
 
 }

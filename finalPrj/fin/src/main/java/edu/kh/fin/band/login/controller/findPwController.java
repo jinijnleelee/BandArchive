@@ -22,74 +22,74 @@ import edu.kh.fin.band.login.model.vo.User;
 
 @SessionAttributes({"loginUser"})
 public class findPwController {
-	
-	@Autowired 
+
+	@Autowired
 	private findPwService service;
-	
+
 	@GetMapping("/findPw")
 	public String PwController() {
-		
-		
+
+
 		return "user/findPw";
-		
+
 	}
-	
+
 		//이메일 검사
 		@ResponseBody
 		@GetMapping("/emailCheck")
 		public int emailCheck(String userEmail) {
-			
 
-			
+
+
 			int result = service.emailCheck(userEmail);
-			
+
 			return result;
 		}
-		
+
 		@PostMapping("fin/findPassword")
 		public String findPw( User inputUser
 							, Model model
 							, RedirectAttributes ra
-							, HttpServletResponse resp 
+							, HttpServletResponse resp
 							, HttpServletRequest req) {
-			
+
 			System.out.println("비밀번호 변경" +inputUser);
-			
+
 			int result = service.findPw(inputUser);
-			
+
 			String message = null;
 			String path = null;
-			
+
 			if(result > 0) {
 				message = "비밀번호 변경 완료 로그인을 해주세요";
 				path = "redirect:/login";
-				
-			}else { 
+
+			}else {
 				message = "변경실패 실패";
-				path = "redirect:/findPw"; 
+				path = "redirect:/findPw";
 			}
-			
+
 			ra.addFlashAttribute("msg", message);
 			return path;
-				
-			
+
+
 		}
-		
+
 		@ResponseBody
 		@GetMapping("/checkEm")
 		public String checkEmail(@RequestParam String inputEmail) {
-						
+
 			System.out.println(inputEmail);
 			int ranNum = service.checkEmail(inputEmail);
-			
+
 			System.out.println(ranNum);
-			
+
 			if(ranNum > 0) {
 				  return new Gson().toJson(ranNum);
 			  } else {
 				  return new Gson().toJson("메일 전송 실패");
 			  }
-				
+
 		}
 
 }

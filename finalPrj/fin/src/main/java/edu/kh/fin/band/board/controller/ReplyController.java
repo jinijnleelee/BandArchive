@@ -15,7 +15,7 @@ import edu.kh.fin.band.board.model.service.ReplyService;
 import edu.kh.fin.band.board.model.vo.Reply;
 import edu.kh.fin.band.login.model.vo.User;
 
-// REST (REpresentational State Transfer) : 
+// REST (REpresentational State Transfer) :
 // - 자원을 이름으로 구분(REpresentational, 자원의 표현)하여
 // 자원의 상태(State)를 주고 받는것(Transfer)
 
@@ -30,31 +30,31 @@ public class ReplyController {
 
 	@Autowired
 	private ReplyService service;
-	
+
 	// 댓글 목록조회
 	@GetMapping("/selectReplyList")
 	public String selectReplyList(int boardNo) {
-		
+
 		List<Reply> rList = service.selectReplyList(boardNo);
-		
+
 		return new Gson().toJson(rList);
 	}
-	
-	
+
+
 	// 댓글 등록
 	@PostMapping("/insert")
 	public int insertReply(Reply reply, @ModelAttribute("loginUser") User loginUser) {
-		
+
 		return service.insertReply(reply,loginUser);
 	}
-	
+
 	// 댓글 수정
 	@PostMapping("/update")
 	public int updateReply(Reply reply) {
 		return service.updateReply(reply);
 	}
-		
-	
+
+
 	// 댓글 삭제
 	@GetMapping("/delete")
 	public int deleteReply(int replyNo) {

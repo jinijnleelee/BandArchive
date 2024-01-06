@@ -10,20 +10,20 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Pagi {
-	
+
 	private int startPage;
 	private int endPage;
 	private boolean prev;
 	private boolean next;
-	
+
 	private Crite cri;
-	
+
 	private int total;
 	private int pageNum;
 	private int amount;
-	
+
 	public Pagi(Crite cri, int total) {
-		
+
 		this.pageNum = cri.getPageNum();
 		this.amount = cri.getAmount();
 		this.total = total;
@@ -36,9 +36,8 @@ public class Pagi {
 		}
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < realEnd;
-		
+
 	}
-	
+
 }
-	
-	
+

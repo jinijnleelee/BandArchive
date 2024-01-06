@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MyBandMember {
-	
+
 	private int bandNo;
 	private String memberNick;
 

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 public class DBTestDAO {
 
 	@Autowired
-	private SqlSessionTemplate sqlSession; 
-	
+	private SqlSessionTemplate sqlSession;
+
 	public DBTestVO dbTest(int userNo) {
 		return sqlSession.selectOne("testMapper.testSelect", userNo);
 	}
@@ -21,5 +21,5 @@ public class DBTestDAO {
 	public int inBandCheck(int userNo) {
 		return sqlSession.selectOne("testMapper.inBandCheck", userNo);
 	}
-	
+
 }

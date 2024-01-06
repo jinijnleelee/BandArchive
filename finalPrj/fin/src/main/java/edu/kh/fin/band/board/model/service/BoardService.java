@@ -1,10 +1,6 @@
 package edu.kh.fin.band.board.model.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import edu.kh.fin.band.board.model.vo.Board;
 import edu.kh.fin.band.board.model.vo.BoardBanned;
@@ -41,7 +37,7 @@ public interface BoardService {
 	List<String> bannedUserIds(BoardBanned boardBanned);
 
 	/**
-	 * 좋아요 등록 
+	 * 좋아요 등록
 	 * @author lee
 	 * @param likeVo
 	 * @return
@@ -49,16 +45,16 @@ public interface BoardService {
 	public int addLike(BoardLikeVO likeVo);
 
 	/**
-	 * 좋아요 취소 
+	 * 좋아요 취소
 	 * @author lee
 	 * @param likeVo
 	 * @return
 	 */
 	public int removeLike(BoardLikeVO likeVo);
 
-	
+
 	/**
-	 * 좋아요 갯수 
+	 * 좋아요 갯수
 	 * @author lee
 	 * @param boardNo
 	 * @return

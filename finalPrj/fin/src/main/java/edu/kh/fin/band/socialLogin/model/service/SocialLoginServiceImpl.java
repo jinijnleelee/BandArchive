@@ -22,7 +22,7 @@ import edu.kh.fin.band.socialLogin.model.dao.SocialLoginDAO;
 
 @Service
 public class SocialLoginServiceImpl implements SocialLoginService {
-	
+
 	@Autowired
 	private SocialLoginDAO dao;
 
@@ -47,16 +47,16 @@ public class SocialLoginServiceImpl implements SocialLoginService {
 	}
 
 	/**
-	 * 카카오 인증 코드 가져오기 
+	 * 카카오 인증 코드 가져오기
 	 * @author lee
 	 */
 	@Override
 	public String getToken(String code) {
-		
+
 		  String access_Token = "";
           String refresh_Token = "";
           String reqURL = "https://kauth.kakao.com/oauth/token";
-          
+
           try {
               URL url = new URL(reqURL);
 
@@ -90,13 +90,13 @@ public class SocialLoginServiceImpl implements SocialLoginService {
               }
 
               //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
-              
-              JsonElement element = (JsonObject)JsonParser.parseString(result);
+
+              JsonElement element = JsonParser.parseString(result);
 
               access_Token = element.getAsJsonObject().get("access_token").getAsString();
               refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
 
-              
+
 
               br.close();
               bw.close();
@@ -114,48 +114,48 @@ public class SocialLoginServiceImpl implements SocialLoginService {
 	 */
 	@Override
 	public HashMap<String, Object> getUserInfo(String accessToken) {
-		
+
 		 HashMap<String, Object> getUserInfo = new HashMap<>();
 		 String reqURL = "https://kapi.kakao.com/v2/user/me";
 		 try {
 		        URL url = new URL(reqURL);
 		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		        conn.setRequestMethod("POST");
-		        
+
 		        //    요청에 필요한 Header에 포함될 내용
 		        conn.setRequestProperty("Authorization", "Bearer " + accessToken);
 		        int responseCode = conn.getResponseCode();
 
-		        
+
 		        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		        
+
 		        String line = "";
 		        String result = "";
-		        
+
 		        while ((line = br.readLine()) != null) {
 		            result += line;
 		        }
 
-		        
-		        JsonElement element = (JsonObject)JsonParser.parseString(result);
-		        
+
+		        JsonElement element = JsonParser.parseString(result);
+
 		        JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 		        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-		        
+
 		        String nick = properties.getAsJsonObject().get("nickname").getAsString();
 		        String profileImg = properties.getAsJsonObject().get("profile_image").getAsString();
 		        String email = kakao_account.getAsJsonObject().get("email").getAsString();
-		        
+
 		        getUserInfo.put("profileImg", profileImg);
 		        getUserInfo.put("nick", nick);
 		        getUserInfo.put("email", email);
 		        getUserInfo.put("token", accessToken);
-		        
-		        
+
+
 		    } catch (IOException e) {
 		        e.printStackTrace();
 		    }
-		    
+
 		    return getUserInfo;
 	}
 

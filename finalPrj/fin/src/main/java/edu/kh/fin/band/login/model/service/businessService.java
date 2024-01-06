@@ -4,14 +4,14 @@ import edu.kh.fin.band.login.model.vo.Business;
 
 public interface businessService {
 
-	
+
 	/** 사업자 로그인 서비스
 	 * @param inputOwner
 	 * @return
 	 */
 	public abstract Business login(Business inputOwner);
- 
-	 
+
+
 	/** 사업자 이메일 체크
 	 * @param ownerEmail
 	 * @return

@@ -13,7 +13,7 @@ import edu.kh.fin.band.msgAlarm.model.vo.MsgAlarm;
 
 @Service
 public class MessageBoxImpl implements MessageBoxService{
-	
+
 	@Autowired
 	private MessageBoxDAO dao;
 
@@ -23,7 +23,7 @@ public class MessageBoxImpl implements MessageBoxService{
 	 */
 	@Override
 	public List<MessageBox> selectMsgList(int receiverUserNo) {
-		
+
 		return dao.selectMsgList(receiverUserNo);
 	}
 
@@ -62,7 +62,7 @@ public class MessageBoxImpl implements MessageBoxService{
 
 
 
-	
+
 
 	/**
 	 * 멤버리스트에서 처음으로 메세지 보내는 서비스

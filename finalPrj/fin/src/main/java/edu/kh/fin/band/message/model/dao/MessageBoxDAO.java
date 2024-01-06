@@ -13,11 +13,11 @@ import edu.kh.fin.band.msgAlarm.model.vo.MsgAlarm;
 
 @Repository
 public class MessageBoxDAO {
-	
+
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	/** 
+	/**
 	 * @author lee
 	 * 메세지 조회 DAO
 	 */
@@ -25,7 +25,7 @@ public class MessageBoxDAO {
 		return sqlSession.selectList("msgBoxMapper.msgBoxList", receiverUserNo);
 	}
 
-	
+
 
 
 
@@ -75,9 +75,9 @@ public class MessageBoxDAO {
 	public int firstSendMsg(HashMap<String, Object> map) {
 		int msgNo = 0;
 		int insertResult = sqlSession.insert("msgBoxMapper.firstSendMsg", map);
-		
+
 		if(insertResult >0) msgNo = (Integer) map.get("msgNo");
-		
+
 		return msgNo;
 	}
 
@@ -95,6 +95,6 @@ public class MessageBoxDAO {
 
 
 
-	
+
 
 }

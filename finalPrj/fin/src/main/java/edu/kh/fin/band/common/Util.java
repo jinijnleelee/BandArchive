@@ -8,17 +8,17 @@ public class Util {
 	public static String fileRename(String originalFileName) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String date =sdf.format(new java.util.Date(System.currentTimeMillis()));
-		
+
 		int ranNum = (int)(Math.random()*100000); // 5자리 랜덤 숫자 /test
-		
+
 		String str = "_" + String.format("%05d", ranNum);
-		
+
 		String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-		
+
 		return date + str + ext;
 	}
-	
-	   
+
+
 	   // 크로스 사이트 스트립트 공격을 방지 하기 위한 메소드
 	   public static String XSSHandling(String content) {
 	      if(content != null) {
@@ -30,7 +30,7 @@ public class Util {
 	      return content;
 	   }
 
-	   
+
 	   // 크로스 사이트 스트립트 해제
 	   public static String XSSClear(String content) {
 	      if(content != null) {
@@ -41,16 +41,16 @@ public class Util {
 	      }
 	      return content;
 	   }
-	   
-	   
-	   // 개행문자 처리 
+
+
+	   // 개행문자 처리
 	   public static String newLineHandling(String content) {
 	      return content.replaceAll("(\r\n|\r|\n|\n\r)", "<br>");
 	   }
-	   
+
 	   // 개행문자 해제
 	   public static String newLineClear(String content) {
 	      return content.replaceAll("<br>", "\n");
 	   }
-	   
+
 }

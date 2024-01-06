@@ -12,7 +12,7 @@ import edu.kh.fin.band.msgAlarm.model.vo.MsgAlarm;
 
 @Service
 public class MsgAlarmServiceImpl implements MsgAlarmService{
-	
+
 	@Autowired
 	private MsgAlarmDAO dao;
 
@@ -22,7 +22,7 @@ public class MsgAlarmServiceImpl implements MsgAlarmService{
 	 */
 	@Override
 	public int getMsgAlarmCount(int loginUserNo) {
-		
+
 		return dao.getMsgAlarmCount(loginUserNo);
 	}
 
@@ -137,7 +137,7 @@ public class MsgAlarmServiceImpl implements MsgAlarmService{
 		return dao.getUserNicksFromLike(userNo);
 	}
 
-	
+
 	/**
 	 * 초대장 중복 체크 서비스
 	 * @author lee
@@ -149,8 +149,8 @@ public class MsgAlarmServiceImpl implements MsgAlarmService{
 		return dao.dupCheckInvi(map);
 	}
 
-	
 
-	
+
+
 
 }

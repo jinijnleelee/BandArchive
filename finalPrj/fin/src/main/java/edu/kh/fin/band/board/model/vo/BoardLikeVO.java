@@ -15,6 +15,6 @@ public class BoardLikeVO {
 	private int boardNo;
 	private int userNo;
 	private int likeCheck;
-	  
+
 	private int loginUserNo;
 }

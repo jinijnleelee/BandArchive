@@ -14,5 +14,5 @@ public class Ban {
 	private int userNo;
 	private int bannedUserNo;
 	private String bannedUserNick;
-	
+
 }

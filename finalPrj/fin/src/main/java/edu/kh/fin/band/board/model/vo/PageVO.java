@@ -9,20 +9,20 @@ import lombok.ToString;
 @ToString
 public class PageVO {
 
-	
+
 	private int startPage;
 	private int endPage;
 	private boolean prev;
 	private boolean next;
-	
+
 	private Criteria cri;
-	
+
 	private int total;
 	private int pageNum;
 	private int amount;
-	
+
 	public PageVO(Criteria cri, int total) {
-		
+
 		this.pageNum = cri.getPageNum();
 		this.amount = cri.getAmount();
 		this.total = total;
@@ -35,9 +35,9 @@ public class PageVO {
 		}
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < realEnd;
-		
+
 	}
-	
-	
-	
+
+
+
 }

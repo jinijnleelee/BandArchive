@@ -12,7 +12,7 @@ import edu.kh.fin.band.chatting.model.vo.ChatVo;
 
 @Service
 public class ChatService {
-	
+
 	@Autowired
 	ChatDAO dao;
 
@@ -20,7 +20,7 @@ public class ChatService {
 		return dao.onChatRoom(nowUser);
 	}
 
-	
+
 	/** 메세지 저장 기능
 	 * @param msgMap
 	 * @return

@@ -8,21 +8,21 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Crite {
-	
+
 	private int pageNum;
 	private int amount;
-	
-	
+
+
 
 	public Crite() {
 		this(1, 5);
 	}
-	
+
 	public Crite(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
 	}
-	
+
 
 
 }

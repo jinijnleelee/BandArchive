@@ -1,6 +1,5 @@
 package edu.kh.fin.band.used.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,15 +22,15 @@ public class UsedDAO {
 	}
 
 	public List<UsedVo> usedSearchingRoomScroll(String region, String searchingText) {
-		
-		HashMap<String, Object> map = new HashMap<>(); 
-		
+
+		HashMap<String, Object> map = new HashMap<>();
+
 		searchingText = '%' + searchingText + '%';
 		region = '%' + region + '%';
-		
+
 		map.put("region", region);
 		map.put("searchingText", searchingText);
-		
+
 		return sqlSession.selectList("usedBoard-mapper.usedSearchingRoomScroll", map);
 	}
 
@@ -42,9 +41,9 @@ public class UsedDAO {
 	public int writeUsedForm(Map<String, Object> map) {
 
 		int result = sqlSession.insert("usedBoard-mapper.writeUsedForm", map);
-		
+
 		if(result>0) result = (Integer)map.get("boardNo");
-				
+
 		return result;
 	}
 
@@ -69,8 +68,8 @@ public class UsedDAO {
 	 * @return
 	 */
 	public int updateUserForm(Map<String, Object> map) {
-		
-		
+
+
 		return sqlSession.update("usedBoard-mapper.updateUsedBoard",map);
 	}
 
@@ -79,17 +78,17 @@ public class UsedDAO {
 	 * @return
 	 */
 	public int updateImageFile(UsedImage img) {
-		
+
 		int flCount = sqlSession.selectOne("usedBoard-mapper.flCount", img);
-		
+
 		// 만약에 이미 같은 레벨에 이미지가 있으면
 		if(flCount > 0) {
 			return sqlSession.update("usedBoard-mapper.updateImageFile", img);
 		}else { // 이미지 레벨에 이미지가 없으면
-			
+
 			return sqlSession.insert("usedBoard-mapper.insertImageFile", img);
 		}
-		
+
 	}
 
 	public List<UsedImage> imageList(int usedBoard) {
@@ -107,6 +106,6 @@ public class UsedDAO {
 	public int completeSelling(int boardNo) {
 		return sqlSession.update("usedBoard-mapper.completeSelling", boardNo);
 	}
-	
-	
+
+
 }

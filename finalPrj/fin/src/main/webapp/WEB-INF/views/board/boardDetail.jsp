@@ -139,7 +139,7 @@ const deleteBtn= () => {
         
         <div class="heartBox">
         <i class="fa-solid fa-heart"></i>
-        <span class="hearts">${BoardDetail.boardLike}</span>
+        <span class="hearts">${countLike}</span>
         </div>
         <span class="date">${BoardDetail.createDate}</span>
       </div>

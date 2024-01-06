@@ -1,6 +1,5 @@
 package edu.kh.fin.band.board.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import edu.kh.fin.band.board.model.vo.Criteria;
 
 @Repository
 public class BoardDAO {
-	
+
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
@@ -27,13 +26,13 @@ public class BoardDAO {
 
 	public List<BoardDetail> boardList(Criteria cri, String searchType, String keyword) {
 		// TODO Auto-generated method stub
-		
-		  HashMap<String, Object> data = new HashMap<String, Object>();
-		  
-		  
-		
+
+		  HashMap<String, Object> data = new HashMap<>();
+
+
+
 		  data.put("cri", cri);
-		  
+
 		  data.put("searchType", searchType);
 		  data.put("keyword", keyword);
 		 return sqlSession.selectList("boardMapper.boardList",data);
@@ -48,12 +47,12 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update("boardMapper.updateReadCount",boardNo);
 	}
-	
-	
+
+
 
 	public int delete(int boardNo) {
 		return sqlSession.delete("boardMapper.delete",boardNo);
-		
+
 	}
 
 	public int  boardUpdate(Board board) {
@@ -96,43 +95,72 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("boardMapper.bannedUserIds",boardBanned);
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	/**
 	 * 좋아요 등록
 	 * @author lee
 	 * @param likeVo
 	 * @return
 	 */
-	
+
 	//좋아요 등록
-	
+
 	public int addLike(BoardLikeVO likeVo) {
-		return sqlSession.insert("boardMapper.addLike", likeVo);
+		
+		
+		int addLike = sqlSession.insert("boardMapper.addLike", likeVo);
+		
+
+		if(addLike > 0) {
+		
+		sqlSession.update("boardMapper.boardLikePlus",likeVo.getBoardNo());
+		      return addLike;
+		 
+		 } else {
+		    	
+			 return -1;
+		 
+		 }
 	}
 	
+
 	/**
-	 * 좋아요 취소 
+	 * 좋아요 취소
 	 * @author lee
 	 * @param boardNo
 	 * @param loginUser
 	 * @return
 	 */
-	
+
 	public int removeLike(BoardLikeVO likeVo) {
-		return	sqlSession.delete("boardMapper.removeLike", likeVo);
+		
+		
+		int removeLike = 	sqlSession.delete("boardMapper.removeLike", likeVo);
+		
+
+		if(removeLike > 0) {
+			 
+		sqlSession.update("boardMapper.boardLikeMinus",likeVo.getBoardNo());
+			return removeLike;
+			
+		} else {
+		    	
+		    return -1;
+		}
 	}
 	
-	
-	
+
+
+
 	//좋아요 갯수
 	public int countLike(int boardNo) {
 	    return sqlSession.selectOne("boardMapper.countLike", boardNo);
 	}
-	
+
 	/**
 	 * 좋아요 한지 안한지 체크
 	 * @author lee
@@ -160,6 +188,6 @@ public class BoardDAO {
 //
 //
 
-	
-	
+
+
 }

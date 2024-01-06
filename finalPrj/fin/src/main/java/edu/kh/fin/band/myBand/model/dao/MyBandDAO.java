@@ -18,21 +18,21 @@ public class MyBandDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	public List<MyBand> bandList(Map<String, Object> boardMap) {
-		
+
 		List<MyBand> bList = sqlSession.selectList("myBandMapper.bandBoardList", boardMap);
-		
+
 		for(MyBand eachBand : bList) {
 			int MboardNo = eachBand.getBoardNo();
-			
+
 			int rCount = sqlSession.selectOne("myBandMapper.rCount", MboardNo);
-			
+
 			eachBand.setReplyCount(rCount);
-			
+
 		}
-		
-		
+
+
 		return bList;
 	}
 
@@ -50,24 +50,24 @@ public class MyBandDAO {
 
 	public int bandUserFl(int bandNo, User loginUser) {
 		Map<String, Object>bandFlMap = new HashMap<>();
-		
+
 		bandFlMap.put("bandNo", bandNo);
 		bandFlMap.put("userNo", loginUser.getUserNo());
-		
-		
+
+
 		return sqlSession.selectOne("myBandMapper.bandUserFl", bandFlMap);
 	}
 
 	public int writeBandBoard(String title, String text, int bandNo, int userNo, boolean noticeBoardCheck) {
-		
-		Map<String, Object>map = new HashMap<String, Object>();
-		
+
+		Map<String, Object>map = new HashMap<>();
+
 		map.put("title", title);
 		map.put("text", text);
 		map.put("bandNo", bandNo);
 		map.put("userNo", userNo);
 		map.put("noticeBoardCheck", noticeBoardCheck);
-		
+
 		return sqlSession.insert("myBandMapper.writeBandBoard", map);
 	}
 
@@ -76,14 +76,14 @@ public class MyBandDAO {
 	}
 
 	public int insertReplyForBandBoard(int boardNo, int loginUserNo, String replyText) {
-		
-		
-		Map<String, Object> replyMap = new HashMap<String, Object>();
-		
+
+
+		Map<String, Object> replyMap = new HashMap<>();
+
 		replyMap.put("boardNo", boardNo);
 		replyMap.put("loginUserNo", loginUserNo);
 		replyMap.put("replyText", replyText);
-		
+
 		return sqlSession.insert("myBandMapper.insertReplyForBandBoard", replyMap);
 	}
 
@@ -92,9 +92,9 @@ public class MyBandDAO {
 	}
 
 	public int updateBandBoard(String title, String text, int boardNo, boolean noticeBoardCheck) {
-		
-		Map<String, Object> boardMap = new HashMap<String, Object>();
-		
+
+		Map<String, Object> boardMap = new HashMap<>();
+
 		boardMap.put("boardNo", boardNo);
 		boardMap.put("title", title);
 		boardMap.put("text", text);
@@ -107,10 +107,10 @@ public class MyBandDAO {
 	}
 
 	public int updateReplyLogic(int replyNo, String replyText) {
-		
 
-		Map<String, Object> rMap = new HashMap<String, Object>();
-		
+
+		Map<String, Object> rMap = new HashMap<>();
+
 		rMap.put("replyNo", replyNo);
 		rMap.put("replyText", replyText);
 
@@ -127,67 +127,67 @@ public class MyBandDAO {
 	}
 
 	public int likeCheck(int boardNo, int userNo) {
-		
 
-		Map<String, Object> likeMap = new HashMap<String, Object>();
-		
+
+		Map<String, Object> likeMap = new HashMap<>();
+
 		likeMap.put("boardNo", boardNo);
 		likeMap.put("userNo", userNo);
-		
+
 		return sqlSession.selectOne("myBandMapper.likeCheck", likeMap);
 	}
 
 	public int likeLogic(LikeLogic likeLogic) {
-		
+
 		sqlSession.update("myBandMapper.likeUpdate", likeLogic);
-		
+
 		return sqlSession.insert("myBandMapper.likeLogic", likeLogic);
 	}
 
 	public int unlikeLogic(LikeLogic likeLogic) {
-		
+
 		sqlSession.update("myBandMapper.unlikeUpdate", likeLogic);
 		return sqlSession.delete("myBandMapper.unlikeLogic", likeLogic);
 	}
 
 	public List<MyBand> searcingBandList(int bandNo, int amount, int pageNum, String searchingText, String selectType) {
-		
+
 		Map<String,Object> boardMap = new HashMap<>();
-		
+
 		searchingText = "%" +searchingText + "%";
-		
+
 		boardMap.put("bandNo", bandNo);
 		boardMap.put("amount", amount);
 		boardMap.put("pageNum", pageNum);
 		boardMap.put("searchingText", searchingText);
 		boardMap.put("selectType", selectType);
-		
-	
-		
+
+
+
 		List<MyBand> bList = sqlSession.selectList("myBandMapper.searcingBandList", boardMap);
-		
+
 		for(MyBand eachBand : bList) {
 			int MboardNo = eachBand.getBoardNo();
-			
+
 			int rCount = sqlSession.selectOne("myBandMapper.rCount", MboardNo);
-			
+
 			eachBand.setReplyCount(rCount);
-			
+
 		}
 		return bList;
 	}
 
 	public int getSearchingTotal(int bandNo, String searchingText, String selectType) {
-		
+
 
 		Map<String,Object> boardMap = new HashMap<>();
-		
+
 		searchingText = "%" +searchingText + "%";
-		
+
 		boardMap.put("bandNo", bandNo);
 		boardMap.put("searchingText", searchingText);
 		boardMap.put("selectType", selectType);
-		
+
 		return sqlSession.selectOne("myBandMapper.getSearchingTotal", boardMap);
 	}
 

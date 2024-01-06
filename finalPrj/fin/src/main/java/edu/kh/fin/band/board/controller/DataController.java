@@ -1,14 +1,17 @@
 package edu.kh.fin.band.board.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.google.gson.Gson;
+
 import edu.kh.fin.band.board.model.service.BoardService;
 import edu.kh.fin.band.board.model.vo.BoardDetail;
 import edu.kh.fin.band.board.model.vo.Criteria;
 import edu.kh.fin.band.board.model.vo.PageVO;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DataController {

@@ -8,9 +8,9 @@ public class DBTestService {
 
 	@Autowired
 	DBTestDAO dao;
-	
+
 	public DBTestVO dbTest(int userNo) {
-		
+
 		return dao.dbTest(userNo);
 	}
 

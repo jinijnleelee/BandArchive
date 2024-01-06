@@ -30,33 +30,33 @@ public class LessonService {
 	}
 
 	public int writeLessonForm(Map<String, Object> map, List<MultipartFile> images, String webPath, String folderPath) {
-		
+
 		int lessonNo = dao.writeLessonForm(map);
-		
+
 		// lessonNo 반환
-		
+
 		int imageAllResult = 0;
-		
+
 		if(lessonNo > 0) { // 게시글 삽입 성공 후 이미지 넣기
 
 			for(int i=0; i <images.size(); i++) {
 				// 실제 이미지가 있는 경우
-				if(images.get(i).getSize()>0) { 
+				if(images.get(i).getSize()>0) {
 					LessonImage img = new LessonImage();
 					String reName;
-					
+
 					reName = Util.fileRename(images.get(i).getOriginalFilename());
-					
-					// LessonImge 객체를 생성하여 값 세팅 후 lessonImageList에 추가 
+
+					// LessonImge 객체를 생성하여 값 세팅 후 lessonImageList에 추가
 					img.setLessonNo(lessonNo); // 게시글 번호
 					img.setImageOriginal(images.get(i).getOriginalFilename()); // 원본 파일명
 					img.setImageRename(webPath+reName); // 웹 접근경로 + 변경된 파일명
 					img.setImageLevel(i);
-					
+
 					imageAllResult = dao.insertImageFile(img);
-					
-					
-					
+
+
+
 					try {
 						images.get(i).transferTo(new File(folderPath + reName));
 					} catch (IllegalStateException e) {
@@ -69,12 +69,12 @@ public class LessonService {
 				}
 			}
 		}
-		
+
 		return imageAllResult;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * 레슨 필터 리스트 조회 service
 	 * @author lee
@@ -85,8 +85,8 @@ public class LessonService {
 	public List<Lesson> lessonFilter(String lessonText, String locText) {
 		return dao.lessonFilter(lessonText,locText);
 	}
-	
-	
+
+
 
 	/**
 	 * 레슨 게시글 디테일 가져오기 service
@@ -107,7 +107,7 @@ public class LessonService {
 	public LessonImage selectLessonImg(int lessonNo) {
 		return dao.selectLessonImg(lessonNo);
 	}
-	
+
 	/**
 	 * 레슨 디테일 조회 시, 하단 추천 강사 뜨기(랜덤 조회) service
 	 * @author lee
@@ -124,13 +124,13 @@ public class LessonService {
 	 * @return
 	 */
 	public int deleteLesson(int lessonNo) {
-		
+
 		return dao.deleteLesson(lessonNo);
 	}
 
-	
 
-	
 
-	
+
+
+
 }

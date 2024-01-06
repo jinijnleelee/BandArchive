@@ -63,13 +63,15 @@
 <![CDATA[
 SELECT *
 FROM (
-    SELECT RN, BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CREATE_DATE, READ_COUNT,
+    SELECT RN, 
+   
+    BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CREATE_DATE, READ_COUNT,
     BOARD_ST, USER_NO, BOARD_LIKE, BOARD_TAG, USER_NICK
     FROM (
         SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NO DESC) AS RN,
         BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CREATE_DATE, READ_COUNT,
         BOARD_ST, USER_NO, BOARD_LIKE, BOARD_TAG, USER_NICK
-        FROM BOARD 
+        FROM BOARD
         JOIN "USER" USING(USER_NO)
         WHERE 1=1
         AND BOARD_ST = 'N'
@@ -93,42 +95,8 @@ WHERE RN > (#{pageNum}-1) * #{amount}
 </select>
 
 
-<!-- 
-	<select id="boardList"  parameterType="hashMap" resultMap="detail_rm">
-	
-<![CDATA[
-
-SELECT *
-FROM (
-    SELECT RN, BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CREATE_DATE, READ_COUNT,
-    BOARD_ST, USER_NO, BOARD_LIKE, BOARD_TAG, USER_NICK
-    FROM (
-        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NO DESC) AS RN,
-        BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CREATE_DATE, READ_COUNT,
-        BOARD_ST, USER_NO, BOARD_LIKE, BOARD_TAG, USER_NICK
-        FROM BOARD 
-        JOIN "USER" USING(USER_NO)
-    ) A
-    WHERE RN <= #{pageNum} * #{amount}
-    ]]>
- <if test="searchType =='all'">
- AND BOARD_TITLE LIKE '%'||#{keyword}||'%' OR BOARD_CONTENT LIKE '%'||#{keyword}||'%'</if>
-<if test="searchType =='notice'">
-AND  (BOARD_TITLE LIKE '%'||#{keyword}||'%' OR BOARD_CONTENT LIKE '%'||#{keyword}||'%')
-AND BOARD_TAG = 1</if>
-<if test="searchType =='popular'">
-AND  (BOARD_TITLE LIKE '%'||#{keyword}||'%' OR BOARD_CONTENT LIKE '%'||#{keyword}||'%')
-AND BOARD_TAG = 2</if>
 
 
-<![CDATA[
-) B
-WHERE RN > (#{pageNum}-1) * #{amount}
-
-]]>
-
-    </select> 
-     -->
     	
 	<select id="boardTalk" resultMap="detail_rm">
 	
@@ -141,6 +109,7 @@ FROM (
         SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NO DESC) AS RN,
         BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CREATE_DATE, READ_COUNT,
         BOARD_ST, USER_NO, BOARD_LIKE, BOARD_TAG, USER_NICK
+          (SELECT COUNT(*) FROM BOARD_LIKE BL WHERE BL.BOARD_NO = BOARD_NO )as like_cnt
         FROM BOARD 
         JOIN "USER" USING(USER_NO)
         WHERE 1=1
@@ -180,6 +149,7 @@ FROM (
         SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NO DESC) AS RN,
         BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CREATE_DATE, READ_COUNT,
         BOARD_ST, USER_NO, BOARD_LIKE, BOARD_TAG, USER_NICK
+          (SELECT COUNT(*) FROM BOARD_LIKE BL WHERE BL.BOARD_NO = BOARD_NO )as like_cnt
         FROM BOARD 
         JOIN "USER" USING(USER_NO)
         WHERE 1=1
@@ -217,6 +187,7 @@ FROM (
         SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NO DESC) AS RN,
         BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CREATE_DATE, READ_COUNT,
         BOARD_ST, USER_NO, BOARD_LIKE, BOARD_TAG, USER_NICK
+          (SELECT COUNT(*) FROM BOARD_LIKE BL WHERE BL.BOARD_NO = BOARD_NO )as like_cnt
         FROM BOARD 
         JOIN "USER" USING(USER_NO)
         WHERE 1=1
@@ -346,6 +317,16 @@ WHERE BOARD_NO = #{boardNo}
 	<select id="checkLike" resultType="_int">
 		SELECT COUNT(*) FROM BOARD_LIKE WHERE BOARD_NO = #{boardNo} AND USER_NO = #{loginUserNo}
 	</select>
+	
+	<!--보드테이블에 좋아요 갯수 추가-->
+	<update id="boardLikePlus"  parameterType="board">
+		UPDATE BOARD SET BOARD_LIKE = BOARD_LIKE + 1  WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+		<!--보드테이블에 좋아요 갯수 빼기-->
+	<update id="boardLikeMinus"  parameterType="board">
+		UPDATE BOARD SET BOARD_LIKE = BOARD_LIKE - 1  WHERE BOARD_NO = #{boardNo}
+	</update>
 
 	
 </mapper>

@@ -12,28 +12,28 @@ import edu.kh.fin.band.login.model.vo.User;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
-	
+
 	@Autowired
 	private ReplyDAO dao;
 
 	// 댓글 목록 조회 서비스 구현
 	@Override
 	public List<Reply> selectReplyList(int boardNo) {
-		
+
 		return dao.selectReplyList(boardNo);
 	}
 
 	// 댓글 등록 서비스 구현
 	@Override
 	public int insertReply(Reply reply, User loginUser) {
-		
+
 		// xss, 개행문자처리
 		reply.setReplyContent( Util.XSSHandling( reply.getReplyContent()) );
 		reply.setReplyContent( Util.newLineHandling( reply.getReplyContent()) );
-		
+
 		return dao.insertReply(reply , loginUser);
 	}
-	
+
 
 	// 댓글 삭제 서비스 구현
 	@Override
@@ -44,15 +44,15 @@ public class ReplyServiceImpl implements ReplyService {
 	// 댓글 수정 서비스 구현
 	@Override
 	public int updateReply(Reply reply) {
-		
+
 		// XSS, 개행문자 처리
 		reply.setReplyContent(  Util.XSSHandling( reply.getReplyContent() )  );
 		reply.setReplyContent(  Util.newLineHandling( reply.getReplyContent() )  );
-		
+
 		return dao.updateReply(reply);
 	}
-	
-	
-	
-	
+
+
+
+
 }

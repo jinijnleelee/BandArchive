@@ -27,11 +27,11 @@ public class DBTestVO {
 	private String gender;
 	private String yoe;
 	private String profileImg;
-	
-	
 
-	
 
-		
+
+
+
+
 
 }

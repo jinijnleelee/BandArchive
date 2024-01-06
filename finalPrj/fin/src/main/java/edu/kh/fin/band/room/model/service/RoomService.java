@@ -43,13 +43,13 @@ public class RoomService {
 	 * @return
 	 */
 	public int roomAlarmResult(HashMap<String, Object> map) {
-		
+
 		// 해당 맵 안에는 로그인 넘버, 룸 넘버가 있는데 해당 룸을 등록한 오너의 오너 넘버를 먼저 가지고 와서 map 세팅해야함
 		int ownerNo = dao.selectOwnerNo(map);
 		map.put("ownerNo", ownerNo);
-		
+
 		// 오너 넘버가 세팅된 맵을 다시 인서트 구문으로 보내기
 		return dao.roomAlarmResult(map);
 	}
-	
+
 }

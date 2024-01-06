@@ -17,7 +17,7 @@ public interface ReplyService {
 
 	/** 댓글 등록 서비스
 	 * @param reply
-	 * @param loginUser 
+	 * @param loginUser
 	 * @return result
 	 */
 	int insertReply(Reply reply, User loginUser);
@@ -36,5 +36,5 @@ public interface ReplyService {
 	 */
 	int updateReply(Reply reply);
 
-	
+
 }

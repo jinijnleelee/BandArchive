@@ -10,15 +10,15 @@ import edu.kh.fin.band.msgAlarm.model.vo.MsgAlarm;
 
 public interface MessageBoxService {
 
-	/** 
+	/**
 	 * msgList 조회 서비
 	 * @author lee
-	 * @param sendUserNickName 
+	 * @param sendUserNickName
 	 * @return
 	 */
 	List<MessageBox> selectMsgList(int receiverUserNo);
 
-	
+
 
 	/**
 	 * 쪽지 삭제 서비스
@@ -68,6 +68,6 @@ public interface MessageBoxService {
 
 
 
-	
+
 
 }

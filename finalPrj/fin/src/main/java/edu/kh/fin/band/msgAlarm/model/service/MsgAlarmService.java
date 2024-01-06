@@ -29,7 +29,7 @@ public interface MsgAlarmService {
 	 */
 	int disappearCount(int loginUserNo);
 
-	/** 
+	/**
 	 * 유저의 알람 갯수를 가져오는 서비스
 	 * @author lee
 	 * @param loginUserNo
@@ -118,6 +118,6 @@ public interface MsgAlarmService {
 	 */
 	int dupCheckInvi(HashMap<String, Object> map);
 
-	
+
 
 }

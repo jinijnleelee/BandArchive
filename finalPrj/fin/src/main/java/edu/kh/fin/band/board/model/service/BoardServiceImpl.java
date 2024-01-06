@@ -1,16 +1,11 @@
 package edu.kh.fin.band.board.model.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.kh.fin.band.board.model.dao.BoardDAO;
-import edu.kh.fin.band.board.model.service.BoardService;
 import edu.kh.fin.band.board.model.vo.Board;
 import edu.kh.fin.band.board.model.vo.BoardBanned;
 import edu.kh.fin.band.board.model.vo.BoardDetail;
@@ -19,7 +14,7 @@ import edu.kh.fin.band.board.model.vo.Criteria;
 @Service
 public class BoardServiceImpl implements BoardService{
 
-	
+
 	@Autowired
 	private BoardDAO dao;
 
@@ -44,13 +39,13 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int updateReadCount(int boardNo) {
 		return dao.updateReadCount(boardNo);
-		
+
 	}
 
 	@Override
 	public int  delete(int boardNo) {
 		return dao.delete(boardNo);
-		
+
 	}
 
 	@Override
@@ -58,7 +53,7 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		 return dao.boardUpdate(board);
 	}
-	
+
 
 	@Override
 	public int getTotal(Criteria cri) {
@@ -93,7 +88,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void reportUser(BoardBanned boardBanned) {
 		// TODO Auto-generated method stub
-	
+
 		dao.reportUser(boardBanned);
 	}
 
@@ -103,18 +98,18 @@ public class BoardServiceImpl implements BoardService{
 		return dao.bannedUserIds(boardBanned);
 	}
 
-	
+
 	/**
 	 * 좋아요 등록
 	 * @author lee
 	 * @param likeVo
 	 * @return
 	 */
-	
+
 	@Override
 	public int addLike(BoardLikeVO likeVo) {
 		return  dao.addLike(likeVo);
-		
+
 	}
 
 	/**
@@ -128,8 +123,8 @@ public class BoardServiceImpl implements BoardService{
 		return dao.checkLike(likeVo);
 	}
 
-	
-	
+
+
 	/**
 	 * 댓글 갯수 가져오기 서비스
 	 * @author lee
@@ -141,12 +136,12 @@ public class BoardServiceImpl implements BoardService{
 		return dao.getReplyCount(boardNo);
 	}
 
-	
+
 
 	@Override
 	public int removeLike(BoardLikeVO likeVo) {
 		return	dao.removeLike(likeVo);
-		
+
 	}
 
 	@Override
@@ -159,5 +154,5 @@ public class BoardServiceImpl implements BoardService{
 //		// TODO Auto-generated method stub
 //		return dao.getLike(boardNo);
 //	}
-	
+
 }

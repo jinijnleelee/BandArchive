@@ -1,6 +1,5 @@
 package edu.kh.fin.band.searching.model.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,8 @@ import edu.kh.fin.band.searching.model.vo.Searching;
 
 @Service
 public class SearchingServiceImpl implements SearchingService{
-	
-	
+
+
 	@Autowired
 	private SearchingDAO dao;
 
@@ -24,7 +23,7 @@ public class SearchingServiceImpl implements SearchingService{
 	 */
 	@Override
 	public List<Searching> checkSelect(Searching searching) {
-		
+
 		return dao.checkSelect(searching);
 	}
 
@@ -35,7 +34,7 @@ public class SearchingServiceImpl implements SearchingService{
 	 */
 	@Override
 	public int checkInfo(int userNo) {
-		
+
 		return dao.checkInfo(userNo);
 	}
 
@@ -46,7 +45,7 @@ public class SearchingServiceImpl implements SearchingService{
 	 */
 	@Override
 	public int setInfo(Searching setInfo) {
-		
+
 		return dao.setInfo(setInfo);
 	}
 

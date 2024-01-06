@@ -7,13 +7,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.kh.fin.band.login.model.vo.User;
 import edu.kh.fin.band.msgAlarm.model.vo.Invitation;
 import edu.kh.fin.band.msgAlarm.model.vo.MsgAlarm;
 
 @Repository
 public class MsgAlarmDAO {
-	
+
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
@@ -85,11 +84,11 @@ public class MsgAlarmDAO {
 	 * @return
 	 */
 	public int sendInvitate(HashMap<String, Object> map) {
-		
-		
+
+
 		// fromUserNo 즉 leaderUserNo을 바탕으로 밴드 넘버 가져오기
 		int bandNo = sqlSession.selectOne("alaramMapper.getBandNo", map);
-		
+
 		if(bandNo != 0) { // 밴드 넘버를 가져왔을 시,
 			// 밴드 넘버를 맵에 넣기
 			map.put("bandNo", bandNo);
@@ -173,14 +172,14 @@ public class MsgAlarmDAO {
 	 * @return
 	 */
 	public int dupCheckInvi(HashMap<String, Object> map) {
-		
+
 		// fromUserNo 즉 leaderUserNo을 바탕으로 밴드 넘버 가져오기
 		int bandNo = sqlSession.selectOne("alaramMapper.getBandNo", map);
-		
+
 		if(bandNo != 0) {
 			map.put("bandNo", bandNo);
 			int checkResult = sqlSession.selectOne("alaramMapper.dupCheckInvi", map);
-			
+
 			if(checkResult > 0) {
 				return 999;
 			}
@@ -188,7 +187,7 @@ public class MsgAlarmDAO {
 		return 0;
 	}
 
-	
-	
+
+
 
 }

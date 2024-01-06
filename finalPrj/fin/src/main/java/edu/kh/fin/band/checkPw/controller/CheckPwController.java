@@ -19,56 +19,50 @@ import edu.kh.fin.band.checkPw.model.service.CheckPwService;
 import edu.kh.fin.band.login.model.vo.User;
 
 @Controller
-@SessionAttributes({"loginUser"})
+@SessionAttributes({ "loginUser" })
 public class CheckPwController {
-	
-	@Autowired
-	private CheckPwService service;
 
-	@GetMapping("/checkPw")
-	public String checkPwController(@ModelAttribute("loginUser") User loginUser) {
-		
-		String path = null;
-		
-		if(loginUser.getUserType().equals("NORMAL")) {
-			
-			path = "checkPw/checkPw";
-		} else {
-			
-			path = "redirect:/myPage";
-		}
-		
-		return path;
-	}
-	
-	@PostMapping("fin/checkPw")
-	public String checkPw(@ModelAttribute("loginUser") User loginUser
-							, Model model
-							, @ModelAttribute User inputUser
-							,@RequestParam Map<String, Object> paramMap
-							, RedirectAttributes ra
-							, HttpServletResponse resp 
-							, HttpServletRequest req) {
-		
-		
-		
-		
-		int result = service.checkPw(inputUser, loginUser.getUserNo());
-		
-		String message = null;
-		String path = null;
-		
-		if(result > 0) {
-			message = "";
-			path = "/myPage";
-		} else {
-			message = "비밀번호가 일치하지 않습니다.";
-			path = "/checkPw";
-		}
-		
-		ra.addFlashAttribute("msg", message);
-		
-		return "redirect:" + path;
-		
-	}
+  @Autowired
+  private CheckPwService service;
+
+  @GetMapping("/checkPw")
+  public String checkPwController(@ModelAttribute("loginUser") User loginUser) {
+    String path = null;
+
+    if (loginUser.getUserType().equals("NORMAL")) {
+      path = "checkPw/checkPw";
+    } else {
+      path = "redirect:/myPage";
+    }
+
+    return path;
+  }
+
+  @PostMapping("fin/checkPw")
+  public String checkPw(
+    @ModelAttribute("loginUser") User loginUser,
+    Model model,
+    @ModelAttribute User inputUser,
+    @RequestParam Map<String, Object> paramMap,
+    RedirectAttributes ra,
+    HttpServletResponse resp,
+    HttpServletRequest req
+  ) {
+    int result = service.checkPw(inputUser, loginUser.getUserNo());
+
+    String message = null;
+    String path = null;
+
+    if (result > 0) {
+      message = "";
+      path = "/myPage";
+    } else {
+      message = "비밀번호가 일치하지 않습니다.";
+      path = "/checkPw";
+    }
+
+    ra.addFlashAttribute("msg", message);
+
+    return "redirect:" + path;
+  }
 }

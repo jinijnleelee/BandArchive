@@ -54,6 +54,9 @@
         // EL 작성 시 scope를 지정하지 않으면
         // page -> request -> session -> application 순서로 검색하여
         // 일치하는 속성이 있으면 출력
+        function goBack() {
+        	 alert("${countLike}");
+}
     </script>
 	</c:if>    
  	<jsp:include page="/WEB-INF/views/common/header.jsp"/> 
@@ -71,36 +74,14 @@
     
    
     
- <!--    <div class="totalTitle">전체 게시판</div> -->
+
     
     <div class="naviBar">
       <ul>
  
-   <!--      <li>
-         <label class="test_obj">
-        	<input type="radio" class="tagAll" name="boardTag" value="0" >
-        		<span>전체</span>
-    	 </label>
-    	</li>
-
-       	<li>
-         
-         <label class="test_obj">
-            <input type="radio" class="tagTalk" name="boardTag" value="1">
-            	<span>잡담</span>
-          </label>
-       
-        </li>
-       <li>
-    	<label class="test_obj">
-        <input type="radio" class="tagQus" name="boardTag" value="2">
-      	<span>질문</span>
-  		</label>
-       </li> -->
        
         <c:if test="${!empty loginUser}">
-       <!-- /comm/board/write/3?mode=insert&cp=1 -->
-       <!-- /comm/board/list/3 -->
+   
        <button class="write" onclick="location.href='boardWrite';">글쓰기</button></a>
        </c:if>
        
@@ -171,7 +152,7 @@
 		 <input type="hidden" name="bannedUserNo" value="${board.userNo}">
 		    <input type="hidden" name="bannedUserNick" value="${board.userNick}">
 		    <input type="hidden" name="userNo" value="${loginUser.userNo}">
-		
+		    <input id="countLike" type="hidden"  value="${countLike}" name="countLike" >
 		</td>      	
 
 
@@ -191,8 +172,6 @@
  
  
  
-<!-- <button class="js-static-modal-toggle btn-primary" type="button" id="blockModal" data-toggle="modal" data-target="#static-modal">신고하기</button> -->
-        
          
    <div id="static-modal" class="modal fade" tabindex="-1" role="dialog" style="display: none; padding-right: 17px;">
    
@@ -527,24 +506,7 @@ $('.tagQus').click(function(){
 
 
 </script>
-<!-- <script type="text/javascript">
-    window.onload = function() {
-        var searchType = document.getElementById('nav-select').value;
-        var keyword = document.querySelector('input[name="keyword"]').value;
-        var paginationLinks = document.querySelectorAll('.pagination a');
 
-        paginationLinks.forEach(function(link) {
-            var href = link.href;
-            if (searchType !== '') {
-                href += '&searchType=' + encodeURIComponent(searchType);
-            }
-            if (keyword !== '') {
-                href += '&keyword=' + encodeURIComponent(keyword);
-            }
-            link.href = href;
-        });
-    }
-</script> -->
 <script type="text/javascript">
 
 var boardNo, bannedUserNo, bannedUserNick, userNo;

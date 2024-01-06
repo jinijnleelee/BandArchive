@@ -10,14 +10,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Invitation {
-	
+
 	private int inviNo;
 	private int toUserNo;
 	private int fromUserNo;
 	private int bandNo;
 
-	
-	
+
+
 	// 목록 가져오기 용
 	private String userNick;
 	private String bandName;

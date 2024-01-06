@@ -1,7 +1,5 @@
 package edu.kh.fin.band.board.model.vo;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Board {
 
-	
+
 	private int boardNo;
 	private String boardTitle;
 	private String boardContent;
@@ -23,8 +21,9 @@ public class Board {
 	private int userNo;
 	private int boardLike;
 	private String boardTag;
-	private String userNick;	
-	
+	private String userNick;
+	private int like_cnt;
 
-	
+
+
 }

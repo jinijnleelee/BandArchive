@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.kh.fin.band.common.pagination.CommonCriteria;
 import edu.kh.fin.band.login.model.vo.User;
 import edu.kh.fin.band.myBand.model.dao.MyBandDAO;
 import edu.kh.fin.band.myBand.model.vo.LikeLogic;
@@ -21,14 +20,14 @@ public class MyBandService {
 	MyBandDAO dao;
 
 	public List<MyBand> bandList(int bandNo, int amount, int pageNum) {
-		
+
 		Map<String,Object> boardMap = new HashMap<>();
-		
+
 		boardMap.put("bandNo", bandNo);
 		boardMap.put("pageNum", pageNum);
 		boardMap.put("amount", amount);
-		
-		
+
+
 		return dao.bandList(boardMap);
 	}
 
@@ -88,8 +87,8 @@ public class MyBandService {
 
 	public void bandBoardCount(int boardNo) {
 		dao.bandBoardCount(boardNo);
-		
-		
+
+
 	}
 
 	/** 좋아요 검증 로직
@@ -119,7 +118,7 @@ public class MyBandService {
 
 	public int reRplyLogic(Map<String, Object> paramMap) {
 		return dao.reRplyLogic(paramMap);
-		
+
 	}
 
 	public int boardCheck(int bandNo) {
@@ -133,7 +132,7 @@ public class MyBandService {
 	public String leaderCheck(int userNo) {
 		return dao.leaderCheck(userNo);
 	}
-	
-	
-	
+
+
+
 }

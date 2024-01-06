@@ -15,7 +15,7 @@ public class RoomDAO {
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	
+
 	/** 연습실 조회
 	 * @return
 	 */
@@ -36,33 +36,33 @@ public class RoomDAO {
 	 * @return
 	 */
 	public List<Room> searchingRoomList(String region, String searchingText) {
-		
-		HashMap<String, Object> map = new HashMap<>(); 
-		
+
+		HashMap<String, Object> map = new HashMap<>();
+
 		searchingText = '%' + searchingText + '%';
 		region = '%' + region + '%';
 
 		map.put("region", region);
 		map.put("searchingText", searchingText);
-		
-		
-		
+
+
+
 		return sqlSession.selectList("pracRoom-mapper.searchingRoom",map);
 	}
 
 	public int pracRoomBooking(ArrayList<Integer> timeArr, HashMap<String, Object> map) {
-		
+
 		int rCount = 0;
-		
-		for(int i=0; i<timeArr.size(); i++) {
-			
-			map.put("thisTime", timeArr.get(i));
-			
+
+		for (Integer element : timeArr) {
+
+			map.put("thisTime", element);
+
 			sqlSession.insert("pracRoom-mapper.roomBook", map);
-			
+
 			rCount ++;
 		}
-		
+
 		return rCount;
 	}
 

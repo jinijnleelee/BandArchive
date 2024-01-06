@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Band {
-	
+
 	private int bandNo;
 	private String bandName;
 	private String ment;

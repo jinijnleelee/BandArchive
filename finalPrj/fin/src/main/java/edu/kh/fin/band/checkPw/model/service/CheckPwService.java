@@ -6,6 +6,6 @@ public interface CheckPwService {
 
 	int checkPw(User inputUser, int userNo);
 
-	
+
 
 }
