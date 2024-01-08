@@ -404,6 +404,7 @@ public class BoardController {
 	@ResponseBody
 	public  int addLike(BoardLikeVO likeVo,
 						Model model,
+						Board boardDetail,
 						@RequestParam("boardNo") int boardNo,
 						@RequestParam("userNo") int userNo,
 						@RequestParam("loginUserNo") int loginUserNo,
@@ -411,18 +412,22 @@ public class BoardController {
 						 ) {
 
 
-			    likeVo.setBoardNo(boardNo);
-				likeVo.setLoginUserNo(loginUserNo);
-				logger.info("boardNo" + boardNo);
-				logger.info("loginUserNo" + loginUserNo);
-				logger.info("userNo" + userNo);
-				logger.info("추가 완 ");
+	    likeVo.setBoardNo(boardNo);
+					likeVo.setLoginUserNo(loginUserNo);
+					logger.info("boardNo" + boardNo);
+					logger.info("loginUserNo" + loginUserNo);
+					logger.info("userNo" + userNo);
+					logger.info("추가 완 ");
 				
 
 				int WriteUserResult= service.loginUserBoardWriteUsercheck(likeVo);
 				
 				if(WriteUserResult > 0 ) {
 					model.addAttribute("WriteUserResult",WriteUserResult);
+					logger.info("userNo = " + userNo);
+					logger.info("loginUserNo = " + loginUserNo);
+					logger.info("WriteUserResult"+WriteUserResult);
+
 				}else {
 					service.addLike(likeVo);
 					

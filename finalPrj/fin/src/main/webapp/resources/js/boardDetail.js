@@ -39,17 +39,17 @@ function addLike() {
     $.ajax({
       url: "addLike",
       method: "POST",
-    
+     dataType : "JSON",
       data: { boardNo: boardNo, userNo: userNo, loginUserNo: loginUserNo },
       success: function (WriteUserResult) {
         if(WriteUserResult > 0){
           alert("자신의 글은 좋아요를 할수없습니다!");
           
         }else{
-          console.log("요청이 성공적으로 처리되었습니다.");
-          
+           alert(WriteUserResult);
+ console.log("loginUserNo = " + loginUserNo);
           location.reload()
-          
+          ß
 
         }
         
