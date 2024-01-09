@@ -22,8 +22,8 @@ function addLike() {
      $.ajax({
       url: "removeLike",
       method: "POST",
-      data: { boardNo: boardNo, userNo: userNo, loginUserNo: loginUserNo },
-      success: function () {
+      data: { boardNo: boardNo, loginUserNo: loginUserNo },
+      success: function (response) {
           console.log("삭제요청이 성공적으로 처리되었습니다.");
           likeck.value = "F";
         location.reload()
@@ -40,16 +40,17 @@ function addLike() {
       url: "addLike",
       method: "POST",
      dataType : "JSON",
-      data: { boardNo: boardNo, userNo: userNo, loginUserNo: loginUserNo },
-      success: function (WriteUserResult) {
+      data: { boardNo: boardNo, loginUserNo: loginUserNo },
+      success: function (response) {
+        var WriteUserResult = response.WriteUserResult;
         if(WriteUserResult > 0){
           alert("자신의 글은 좋아요를 할수없습니다!");
           
         }else{
            alert(WriteUserResult);
- console.log("loginUserNo = " + loginUserNo);
+alert("loginUserNo = " + loginUserNo,"boardNo" + boardNo,"userNo" + userNo);
           location.reload()
-          ß
+        
 
         }
         

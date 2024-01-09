@@ -1,7 +1,9 @@
 package edu.kh.fin.band.board.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -204,8 +206,7 @@ public class BoardController {
 					BoardLikeVO likeVo = new BoardLikeVO();
 					likeVo.setBoardNo(boardNo);
 					likeVo.setLoginUserNo(loginUserNo);
-
-
+					likeVo.setUserNo(loginUserNo);
 					int countLike = service.countLike(boardNo);
 					model.addAttribute("countLike",countLike);
 
@@ -402,47 +403,58 @@ public class BoardController {
 
 	@PostMapping("/addLike")
 	@ResponseBody
-	public  int addLike(BoardLikeVO likeVo,
+	public  Map<String, Object> addLike(BoardLikeVO likeVo,
 						Model model,
 						Board boardDetail,
 						@RequestParam("boardNo") int boardNo,
-						@RequestParam("userNo") int userNo,
+						
 						@RequestParam("loginUserNo") int loginUserNo,
 						@ModelAttribute("loginUser") User loginUser
 						 ) {
 
-
-	    likeVo.setBoardNo(boardNo);
-					likeVo.setLoginUserNo(loginUserNo);
+		Map<String, Object> response = new HashMap<>();
+		
+		
+					likeVo.setBoardNo(boardNo);
+					likeVo.setUserNo(loginUser.getUserNo());
+					likeVo.setLoginUserNo(loginUser.getUserNo());
 					logger.info("boardNo" + boardNo);
 					logger.info("loginUserNo" + loginUserNo);
-					logger.info("userNo" + userNo);
+					logger.info("userNo" + loginUser.getUserNo());
 					logger.info("추가 완 ");
 				
 
 				int WriteUserResult= service.loginUserBoardWriteUsercheck(likeVo);
 				
 				if(WriteUserResult > 0 ) {
-					model.addAttribute("WriteUserResult",WriteUserResult);
-					logger.info("userNo = " + userNo);
+				//model.addAttribute("WriteUserResult",WriteUserResult);
+				    response.put("WriteUserResult", WriteUserResult);
+					
 					logger.info("loginUserNo = " + loginUserNo);
 					logger.info("WriteUserResult"+WriteUserResult);
 
 				}else {
 					service.addLike(likeVo);
-					
+					logger.info("추가 완 ");
+					logger.info("userNo = " + likeVo.getUserNo());
+					logger.info("loginUserNo = " + likeVo.getLoginUserNo());
+					logger.info("WriteUserResult"+WriteUserResult);
 				}
 				
 				
 				int result = service.countLike(boardNo);
 				
 				if (result>0) {
-					model.addAttribute("like_Check",result);
+				//	model.addAttribute("like_Check",result);
+					 response.put("like_Check", result);
 
 				}else {
-						model.addAttribute("like_Check",result);
+				//		model.addAttribute("like_Check",result);
+					 response.put("like_Check", result);
 				}
-				return result;
+				
+			//	 response.put("result", result);
+				return response;
 
 
 
@@ -453,31 +465,34 @@ public class BoardController {
 
 	@PostMapping("/removeLike")
 	@ResponseBody
-	public int removeLike(BoardLikeVO likeVo,
+	public Map<String, Object> removeLike(BoardLikeVO likeVo,
 			Model model,
 						@RequestParam("boardNo") int boardNo,
-						@RequestParam("userNo") int userNo,
+						
 						@RequestParam("loginUserNo") int loginUserNo,
 						@ModelAttribute("loginUser") User loginUser
 						 ) {
 
-
+		Map<String, Object> response = new HashMap<>();
 			    likeVo.setBoardNo(boardNo);
 				likeVo.setLoginUserNo(loginUserNo);
 				logger.info("boardNo" + boardNo);
 				logger.info("loginUserNo" + loginUserNo);
-				logger.info("userNo" + userNo);
+				
 				logger.info("삭제 완 ");
 				 service.removeLike(likeVo);
 
 					int result = service.countLike(boardNo);
-					if (result>1) {
-						model.addAttribute("like_Check",result);
-
+					if (result>0) {
+						//model.addAttribute("like_Check",result);
+						logger.info("like_Check" + result);
+						response.put("like_Check", result);
 					}else {
-							model.addAttribute("like_Check",result);
+						//	model.addAttribute("like_Check",result);
+							logger.info("like_Check" + result);
+							response.put("like_Check", result);
 					}
-			return result;
+			return response;
 
 
 
