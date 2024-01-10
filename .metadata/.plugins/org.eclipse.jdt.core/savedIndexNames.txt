@@ -54,7 +54,6 @@ INDEX VERSION 1.131+/Users/jy/Documents/workspace/bandarchive/.metadata/.plugins
 3727791925.index
 2116876280.index
 81625039.index
-2340047703.index
 3169719845.index
 2577256638.index
 830754354.index

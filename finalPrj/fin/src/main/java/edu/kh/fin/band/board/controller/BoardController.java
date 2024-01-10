@@ -50,6 +50,20 @@ public class BoardController {
 	private ReplyService rService;
 	private Logger logger = LoggerFactory.getLogger(MyBandController.class);
 
+	
+	
+	/**
+	 * 보드메인으로 가기 Controller
+	 * @param model
+	 * @param cri
+	 * @param board
+	 * @param searchType
+	 * @param keyword
+	 * @param loginUserNo
+	 * @param session
+	 * @param boardBanned
+	 * @return
+	 */
 	@GetMapping("/board")
 	public String BoardList(Model model, Criteria cri,
 							Board board,
@@ -58,7 +72,9 @@ public class BoardController {
 							@RequestParam(value = "loginUserNo", required = false) Integer loginUserNo, // Change int to Integer and remove defaultValue
 							HttpSession session,
 							BoardBanned boardBanned) {
-	    int total = service.getTotal(cri);
+	    
+		
+		int total = service.getTotal(cri);
 
 
 	    PageVO pageVO = new PageVO(cri, total);
@@ -68,10 +84,11 @@ public class BoardController {
 
 
 	    if(user != null) {
+	    	
 	        boardBanned.setUserNo(user.getUserNo());
 	        List<String> bannedUserIds = service.bannedUserIds(boardBanned);
 	        model.addAttribute("bannedUserIds", bannedUserIds);
-	        cri.setLoginUserNo(user.getUserNo()); // Set loginUserNo in Criteria when user is logged in
+	        cri.setLoginUserNo(user.getUserNo());
 	    }
 
 	    List<BoardDetail> boardList = service.boardList(cri);
@@ -84,31 +101,56 @@ public class BoardController {
 
 
 
-
+	/**
+	 *  신고추가 Controller
+	 * @param boardBanned
+	 * @param bannedUserNo
+	 * @param bannedUserNick
+	 * @param session
+	 * @return
+	 */
     @RequestMapping(value="/report", method=RequestMethod.POST)
     public String reportUser(BoardBanned boardBanned,
 			@RequestParam(value = "bannedUserNo") int bannedUserNo,
 		    @RequestParam(value = "bannedUserNick")String bannedUserNick,
     		HttpSession session) {
+    
+    	
     	User user =(User)session.getAttribute("loginUser");
 
-    if(user==null) {
+    	if(user==null) {
 
 
-    }else {
+	    }else {
+	
+	   	 boardBanned.setUserNo(user.getUserNo());
+	       service.reportUser(boardBanned);
+	
+	
+	    }
+	
+	
+	        return "board/boardMain";
+	    }
 
-   	 boardBanned.setUserNo(user.getUserNo());
-       service.reportUser(boardBanned);
-
-
-    }
-
-
-        return "board/boardMain";
-    }
-
-	@GetMapping("/boardDetail")
-
+	
+    
+    
+    
+    /**
+     * 보드디테일 Controller
+     * @param boardNo
+     * @param model
+     * @param cri
+     * @param searchType
+     * @param keywor
+     * @param session
+     * @param loginUserNo
+     * @param req
+     * @param resp
+     * @return
+     */
+    @GetMapping("/boardDetail")
 	public String boardDetail(@RequestParam("boardNo")int boardNo,
 								Model model, Criteria cri,
 								@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
@@ -123,12 +165,6 @@ public class BoardController {
 
 		User loginUser = new User(); // @ModelAttribute("loginUser") User loginUser,
 		BoardDetail boardDetail = service.boardDetail(boardNo);
-
-
-
-
-
-
 
 
 					int memberNo = 0;
@@ -253,39 +289,23 @@ public class BoardController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * 글쓰기로 들어가기 Controller 
+     * @return
+     */
 	@GetMapping("/boardWrite")
 	public String boardWriteFom() {
-
-
-
 		return "board/boardWrite";
-
 	}
 
 
+	/**
+	 * 글쓰기 Controller
+	 * @param board
+	 * @param loginUser
+	 * @param ra
+	 * @return
+	 */
 	@PostMapping("/boardWrite")
 	public String Write(@ModelAttribute Board board,
 						@ModelAttribute("loginUser") User loginUser,
@@ -321,6 +341,13 @@ public class BoardController {
 	}
 
 
+	
+	/**
+	 * 게시글 삭제 Controller
+	 * @param boardNo
+	 * @param ra
+	 * @return
+	 */
 	@GetMapping("/delete")
 	public String delete(@RequestParam("boardNo")int boardNo
 										,RedirectAttributes ra) {
@@ -345,7 +372,15 @@ public class BoardController {
 
 
 	}
-
+	
+	/**
+	 * 게시글 수정으로 가기 Controller
+	 * @param boardNo
+	 * @param model
+	 * @param cri
+	 * @param ra
+	 * @return
+	 */
 	@GetMapping("/update")
 	public String updateForm(@RequestParam("boardNo")int boardNo,
 											Model model,Criteria cri,
@@ -355,12 +390,18 @@ public class BoardController {
 		model.addAttribute("board" , boardDetail);
 
 
-
-
 		return "board/boardUpdate";
 	}
 
 
+	/**
+	 * 게시글 수정하기 Controller
+	 * @param board
+	 * @param model
+	 * @param cri
+	 * @param ra
+	 * @return
+	 */
 	@PostMapping("/mody")
 	public String boardUpdate(@ModelAttribute Board board,
 								Model model,Criteria cri,
@@ -400,6 +441,7 @@ public class BoardController {
 
 
 
+	
 
 	@PostMapping("/addLike")
 	@ResponseBody
