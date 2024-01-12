@@ -20,31 +20,25 @@ public class BoardDAO {
 	SqlSessionTemplate sqlSession;
 
 	public int write(Board board) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("boardMapper.write",board);
 	}
 
 	public List<BoardDetail> boardList(Criteria cri, String searchType, String keyword) {
-		// TODO Auto-generated method stub
 
 		  HashMap<String, Object> data = new HashMap<>();
 
-
-
 		  data.put("cri", cri);
-
 		  data.put("searchType", searchType);
 		  data.put("keyword", keyword);
+		  
 		 return sqlSession.selectList("boardMapper.boardList",data);
 	}
 
 	public BoardDetail boardDetail(int boardNo) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("boardMapper.boardDetail",boardNo);
 	}
 
 	public int updateReadCount(int boardNo) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("boardMapper.updateReadCount",boardNo);
 	}
 
@@ -56,43 +50,35 @@ public class BoardDAO {
 	}
 
 	public int  boardUpdate(Board board) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("boardMapper.boardUpdate",board);
 	}
 
 	public int getTotal(Criteria cri) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("boardMapper.getTotal",cri);
 	}
 
 	public List<BoardDetail> boardTalk(Criteria cri) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("boardMapper.boardTalk",cri);
 	}
 
 	public List<BoardDetail> boardQus(Criteria cri) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("boardMapper.boardQus",cri);
 	}
 
 	public List<BoardDetail> boardAll(Criteria cri) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("boardMapper.boardAll",cri);
 	}
 
 	public List<BoardDetail> boardList(Criteria cri) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("boardMapper.boardList",cri);
 	}
 
 
 	public Object reportUser(BoardBanned boardBanned) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("boardMapper.reportUser",boardBanned);
 	}
 
 	public List<String> bannedUserIds(BoardBanned boardBanned) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("boardMapper.bannedUserIds",boardBanned);
 	}
 
@@ -102,27 +88,23 @@ public class BoardDAO {
 
 	/**
 	 * 좋아요 등록
-	 * @author lee
 	 * @param likeVo
 	 * @return
 	 */
 
-
-
 	public int addLike(BoardLikeVO likeVo) {
-		
-		
+			
 		int addLike = sqlSession.insert("boardMapper.addLike", likeVo);
 		
-
 		if(addLike > 0) {
 		
 		sqlSession.update("boardMapper.boardLikePlus",likeVo.getBoardNo());
-		      return addLike;
+		     
+		return addLike;
 		 
 		 } else {
 		    	
-			 return -1;
+		return -1;
 		 
 		 }
 	}
@@ -130,7 +112,6 @@ public class BoardDAO {
 
 	/**
 	 * 좋아요 취소
-	 * @author lee
 	 * @param boardNo
 	 * @param loginUser
 	 * @return
@@ -138,32 +119,34 @@ public class BoardDAO {
 
 	public int removeLike(BoardLikeVO likeVo) {
 		
-		
-		int removeLike = 	sqlSession.delete("boardMapper.removeLike", likeVo);
-		
+		int removeLike = sqlSession.delete("boardMapper.removeLike", likeVo);
 
 		if(removeLike > 0) {
 			 
 		sqlSession.update("boardMapper.boardLikeMinus",likeVo.getBoardNo());
-			return removeLike;
+			
+		return removeLike;
 			
 		} else {
 		    	
-		    return -1;
+		return -1;
 		}
 	}
 	
 
 
 
-	//좋아요 갯수
+	/**
+	 * 좋아요 갯수 
+	 * @param boardNo
+	 * @return
+	 */
 	public int countLike(int boardNo) {
 	    return sqlSession.selectOne("boardMapper.countLike", boardNo);
 	}
 
 	/**
 	 * 좋아요 한지 안한지 체크
-	 * @author lee
 	 * @param likeVo
 	 * @return
 	 */
@@ -173,23 +156,15 @@ public class BoardDAO {
 
 	/**
 	 * 댓글 갯수 가져오기 DAO
-	 * @author lee
 	 * @param boardNo
 	 * @return
 	 */
 	public int getReplyCount(int boardNo) {
 		return sqlSession.selectOne("replyMapper.getReplyCount", boardNo);
 	}
-//
-//	public int getLike(int boardNo) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//
-//
+
 
 	public int loginUserBoardWriteUsercheck(BoardLikeVO likeVo) {
-		
 		return sqlSession.selectOne("boardMapper.loginUserBoardWriteUsercheck", likeVo);
 	}
 

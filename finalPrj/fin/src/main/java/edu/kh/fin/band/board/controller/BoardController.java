@@ -442,7 +442,16 @@ public class BoardController {
 
 
 	
-
+	/**
+	 * 좋아요추가 Controller
+	 * @param likeVo
+	 * @param model
+	 * @param boardDetail
+	 * @param boardNo
+	 * @param loginUserNo
+	 * @param loginUser
+	 * @return
+	 */
 	@PostMapping("/addLike")
 	@ResponseBody
 	public  Map<String, Object> addLike(BoardLikeVO likeVo,
@@ -463,7 +472,7 @@ public class BoardController {
 					logger.info("boardNo" + boardNo);
 					logger.info("loginUserNo" + loginUserNo);
 					logger.info("userNo" + loginUser.getUserNo());
-					logger.info("추가 완 ");
+			
 				
 
 				int WriteUserResult= service.loginUserBoardWriteUsercheck(likeVo);
@@ -473,14 +482,14 @@ public class BoardController {
 				    response.put("WriteUserResult", WriteUserResult);
 					
 					logger.info("loginUserNo = " + loginUserNo);
-					logger.info("WriteUserResult"+WriteUserResult);
+					logger.info("WriteUserResult" + WriteUserResult);
 
 				}else {
 					service.addLike(likeVo);
 					logger.info("추가 완 ");
 					logger.info("userNo = " + likeVo.getUserNo());
 					logger.info("loginUserNo = " + likeVo.getLoginUserNo());
-					logger.info("WriteUserResult"+WriteUserResult);
+					logger.info("WriteUserResult" + WriteUserResult);
 				}
 				
 				
@@ -504,7 +513,15 @@ public class BoardController {
 
 	}
 
-
+	/**
+	 * 좋아요삭제 Controller
+	 * @param likeVo
+	 * @param model
+	 * @param boardNo
+	 * @param loginUserNo
+	 * @param loginUser
+	 * @return
+	 */
 	@PostMapping("/removeLike")
 	@ResponseBody
 	public Map<String, Object> removeLike(BoardLikeVO likeVo,
