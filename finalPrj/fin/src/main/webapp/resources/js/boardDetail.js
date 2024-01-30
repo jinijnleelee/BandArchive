@@ -1,12 +1,4 @@
-const commentBox2 = () => {
-  if (heart.classList.contains("like")) {
-    heart.classList.remove("like");
-    heart.classList.add("unlike");
-  } else {
-    heart.classList.remove("unlike");
-    heart.classList.add("like");
-  }
-};
+
 
 const addLikeDiv = document.getElementById("addLike");
 
@@ -24,7 +16,7 @@ function addLike() {
       method: "POST",
       data: { boardNo: boardNo, loginUserNo: loginUserNo },
       success: function (response) {
-          console.log("삭제요청이 성공적으로 처리되었습니다.");
+          
           likeck.value = "F";
         location.reload()
       },
@@ -44,7 +36,11 @@ function addLike() {
       success: function (response) {
         var WriteUserResult = response.WriteUserResult;
         if(WriteUserResult > 0){
-          alert("자신의 글은 좋아요를 할수없습니다!");
+             Swal.fire({
+            title: "BandArchive",
+            text: '자신의 글은 좋아요를 할수없습니다!',
+            icon: 'warning',
+        });
           
         }else{
            alert(WriteUserResult);
@@ -64,5 +60,13 @@ alert("loginUserNo = " + loginUserNo,"boardNo" + boardNo,"userNo" + userNo);
     });
   } // else끝
 }
-
+const commentBox2 = () => {
+  if (heart.classList.contains("like")) {
+    heart.classList.remove("like");
+    heart.classList.add("unlike");
+  } else {
+    heart.classList.remove("unlike");
+    heart.classList.add("like");
+  }
+};
 addLikeDiv.addEventListener("click", addLike);

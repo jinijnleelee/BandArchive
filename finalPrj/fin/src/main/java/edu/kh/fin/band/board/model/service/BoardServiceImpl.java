@@ -101,7 +101,6 @@ public class BoardServiceImpl implements BoardService{
 
 	/**
 	 * 좋아요 등록
-	 * @author lee
 	 * @param likeVo
 	 * @return
 	 */
@@ -114,7 +113,6 @@ public class BoardServiceImpl implements BoardService{
 
 	/**
 	 * 좋아요 한지 안한지 체크
-	 * @author lee
 	 * @param boardDetail
 	 * @return
 	 */
@@ -127,7 +125,6 @@ public class BoardServiceImpl implements BoardService{
 
 	/**
 	 * 댓글 갯수 가져오기 서비스
-	 * @author lee
 	 * @param boardNo
 	 * @return
 	 */
@@ -148,16 +145,15 @@ public class BoardServiceImpl implements BoardService{
 	public int countLike(int boardNo) {
 		return dao.countLike(boardNo);
 	}
-
+	
+	
+	/**
+	 * 내가 쓴글인지 확인 (좋아요 체크 위해)
+	 */
 	@Override
 	public int loginUserBoardWriteUsercheck(BoardLikeVO likeVo) {
 		return dao.loginUserBoardWriteUsercheck(likeVo);
 	}
 
-//	@Override
-//	public int getLike(int boardNo) {
-//		// TODO Auto-generated method stub
-//		return dao.getLike(boardNo);
-//	}
 
 }

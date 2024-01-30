@@ -38,7 +38,6 @@ public interface BoardService {
 
 	/**
 	 * 좋아요 등록
-	 * @author lee
 	 * @param likeVo
 	 * @return
 	 */
@@ -46,7 +45,6 @@ public interface BoardService {
 
 	/**
 	 * 좋아요 취소
-	 * @author lee
 	 * @param likeVo
 	 * @return
 	 */
@@ -55,7 +53,6 @@ public interface BoardService {
 
 	/**
 	 * 좋아요 갯수
-	 * @author lee
 	 * @param boardNo
 	 * @return
 	 */
@@ -63,7 +60,6 @@ public interface BoardService {
 
 	/**
 	 * 좋아요 한지 안한지 체크
-	 * @author lee
 	 * @param like
 	 * @return
 	 */
@@ -71,13 +67,16 @@ public interface BoardService {
 
 	/**
 	 * 댓글 갯수 가져오기 서비스
-	 * @author lee
 	 * @param boardNo
 	 * @return
 	 */
 	int getReplyCount(int boardNo);
 
-
+	/**
+	 * 내가 쓴글인지 체크(좋아요 못하게 하기위해 ) 
+	 * @param likeVo
+	 * @return
+	 */
 	int loginUserBoardWriteUsercheck(BoardLikeVO likeVo);
 
 

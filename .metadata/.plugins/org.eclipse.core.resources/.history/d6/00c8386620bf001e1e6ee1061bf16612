@@ -452,7 +452,6 @@ public class BoardController {
 	 * @param loginUser
 	 * @return
 	 */
-
 	@PostMapping("/addLike")
 	@ResponseBody
 	public  Map<String, Object> addLike(BoardLikeVO likeVo,
@@ -462,7 +461,8 @@ public class BoardController {
 						@ModelAttribute("loginUser") User loginUser
 						 ) {
 
-				Map<String, Object> response = new HashMap<>();
+		Map<String, Object> response = new HashMap<>();
+		
 		
 					likeVo.setBoardNo(boardNo);
 					likeVo.setUserNo(loginUser.getUserNo());
@@ -476,7 +476,9 @@ public class BoardController {
 				int WriteUserResult= service.loginUserBoardWriteUsercheck(likeVo);
 				
 				if(WriteUserResult > 0 ) {
-				    response.put("WriteUserResult", WriteUserResult);	
+					//model.addAttribute("WriteUserResult",WriteUserResult);
+				    response.put("WriteUserResult", WriteUserResult);
+					
 					logger.info("loginUserNo = " + loginUserNo);
 					logger.info("WriteUserResult" + WriteUserResult);
 

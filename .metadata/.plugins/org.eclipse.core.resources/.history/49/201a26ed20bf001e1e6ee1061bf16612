@@ -452,7 +452,6 @@ public class BoardController {
 	 * @param loginUser
 	 * @return
 	 */
-
 	@PostMapping("/addLike")
 	@ResponseBody
 	public  Map<String, Object> addLike(BoardLikeVO likeVo,
